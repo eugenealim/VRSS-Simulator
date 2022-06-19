@@ -33,6 +33,7 @@ public class FloatingOriginController : MonoBehaviour
         {
             //Origin Shift
             OriginShiftEventChannel.Raise(-referencePosition);
+            Debug.Log("FloatingOriginController.cs raised Origin Shift Event");
         }
 
         //if (SystemObject != null)
