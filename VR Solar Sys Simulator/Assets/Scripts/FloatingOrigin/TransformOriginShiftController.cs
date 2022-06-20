@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class TransformOriginShiftController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private OriginShiftEventChannelSO OriginShiftEventChannel;
+
+    private void OnEnable()
     {
-        
+        OriginShiftEventChannel.Raised += Shift;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        OriginShiftEventChannel.Raised -= Shift;
+    }
+
+    private void Shift(Vector3 offset)
+    {
+        transform.position += offset;
     }
 }

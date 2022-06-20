@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 722663829989359619}
   - component: {fileID: 722663829989359618}
   - component: {fileID: 722663829989359629}
+  - component: {fileID: 824711683580816549}
   m_Layer: 0
   m_Name: Celestial PF
   m_TagString: Celestial
@@ -207,7 +208,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -220,11 +221,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722663829989359628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7346e5fc1fb4324ea791fc7630a0df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  systemObj: {fileID: 0}
+  parentObj: {fileID: 0}
+  volumetricMeanRadius: 1
+  mass: 1
+  dayPeriod: 1
+  obliquityToOrbit: 0
+  periapsis: 0
+  apoapsis: 0
+  inclination: 0
+  rightAscension: 0
+  argumentOfPeriapsis: 0
+  periapsisGlobal: 0
+  apoapsisGlobal: 0
+  semiMajor: 0
+  eccentricity: 0
+  orbitalPeriod: 0
+  angularMomentum: {x: 0, y: 0, z: 0}
+  dotProductOfVelAndRadial: 0
+  dotProductOfAngMomAndVel: 0
+  initDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &824711683580816549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722663829989359628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd21173ffc6cf244a9e597c8355ee031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
 --- !u!1 &722663830148216276
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +772,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722663830932198128}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
@@ -755,3 +789,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92304cfae1274444385ecc9fa1d6b898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CelestialPopUp: {fileID: 722663830475607218}
+  Player: {fileID: 0}

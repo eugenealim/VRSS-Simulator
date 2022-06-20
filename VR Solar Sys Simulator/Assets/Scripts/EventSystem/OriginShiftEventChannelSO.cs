@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OriginShiftEventChannelSO : MonoBehaviour
+[CreateAssetMenu(menuName = "Events/Origin Shift", order = 0)]
+public class OriginShiftEventChannelSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void OriginShift(Vector3 offset);
+    public event OriginShift Raised = delegate { };
+
+    public void Raise(Vector3 offset)
     {
-        
+        Raised.Invoke(offset);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

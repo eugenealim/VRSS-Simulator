@@ -2,17 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
+[DefaultExecutionOrder(1000)]
 public class FloatingOriginController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private OriginShiftEventChannelSO OriginShiftEventChannel;
+
+    [SerializeField]
+    private Transform PlayerTransform;
+
+    [SerializeField]
+    private GameObject SystemObject;
+
+    private SphereCollider _sphereCollider;
+    private float _radius;
+
+    private void Awake()
     {
-        
+        _sphereCollider = GetComponent<SphereCollider>();
+        _sphereCollider.enabled = false;
+        _radius = _sphereCollider.radius;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        var referencePosition = PlayerTransform.position;
+
+        if (referencePosition.magnitude >= _radius)
+        {
+            //Origin Shift
+            OriginShiftEventChannel.Raise(-referencePosition);
+            Debug.Log("FloatingOriginController.cs raised Origin Shift Event");
+        }
+
+        //if (SystemObject != null)
+        //{
+        //    PlayerTransform = SystemObject.GetComponent<CameraFocus>().currentCamera.transform;
+        //}
     }
 }
