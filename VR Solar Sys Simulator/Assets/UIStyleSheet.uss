@@ -1,7 +1,7 @@
 .button-style-load-scene {
     height: 36px;
     width: 145px;
-    background-color: rgba(113, 113, 113, 255);
+    background-color: rgb(113, 113, 113);
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -47,5 +47,58 @@
     font-size: 16px;
     align-items: center;
     justify-content: flex-start;
-    color: rgba(204, 196, 196, 255);
+    color: rgb(204, 196, 196);
+}
+
+.button-style-exit {
+    height: 36px;
+    width: 145px;
+    background-color: rgb(113, 113, 113);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button-style-exit:hover {
+    height: 36px;
+    width: 145px;
+    background-color: rgb(113, 113, 113);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: flex-start;
+    -unity-background-image-tint-color: rgba(115, 41, 41, 255);
+}
+
+.button-style-exit:active {
+    height: 36px;
+    width: 145px;
+    background-color: rgb(236, 21, 21);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgba(171, 157, 157, 255);
 }

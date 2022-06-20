@@ -2,9 +2,11 @@
     <Style src="project://database/Assets/UIStyleSheet.uss?fileID=7433441132597879392&amp;guid=29bbebc7ac1175c43b1c968ab8bfb11a&amp;type=3#UIStyleSheet" />
     <ui:VisualElement name="Background" style="background-color: rgb(0, 0, 0); flex-grow: 1; align-items: center; justify-content: center;">
         <ui:VisualElement style="height: 254px; align-items: center; width: 151px; background-color: rgb(233, 233, 233); justify-content: center; border-top-left-radius: 26px; border-bottom-left-radius: 26px; border-top-right-radius: 26px; border-bottom-right-radius: 26px;">
-            <ui:Label text="Main Menu" display-tooltip-when-elided="true" style="font-size: 20px; position: absolute; top: 20px;" />
-            <ui:Button display-tooltip-when-elided="true" text="Start VRSS Sim" tooltip="Load a Scale Solar System Model in VR" name="LoadSolarSystem" class="button-style-load-scene" style="height: 36px; width: 145px; background-color: rgb(113, 113, 113); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;" />
-            <ui:Button text="Start Empty" display-tooltip-when-elided="true" name="LoadEmptyScene" tooltip="Loads an Empty Universe in VR" class="button-style-load-scene" />
+            <ui:Label text="Main Menu" display-tooltip-when-elided="true" name="MainMenu" style="font-size: 20px; position: absolute; top: 20px;" />
+            <ui:Button text="Start Dev Scene" display-tooltip-when-elided="true" name="Load-Dev-Scene" tooltip="Load the Dev Scene" class="button-style-load-scene" style="top: 60px; position: absolute;" />
+            <ui:Button text="Start VRSS Sim" display-tooltip-when-elided="true" name="Load-VRSS-Scene" tooltip="Load a Scale Solar System Model in VR" class="button-style-load-scene" style="top: 100px; position: absolute;" />
+            <ui:Button text="Start Empty" display-tooltip-when-elided="true" name="Load-Empty-Scene" tooltip="Loads an Empty Universe in VR" class="button-style-load-scene" style="position: absolute; top: 140px;" />
+            <ui:Button text="Exit" display-tooltip-when-elided="true" name="Close-App" tooltip="Closes the Simulator" class="button-style-load-scene button-style-exit" style="bottom: 20px; position: absolute;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
