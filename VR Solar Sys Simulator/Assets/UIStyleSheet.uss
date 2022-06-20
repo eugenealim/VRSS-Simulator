@@ -1,0 +1,51 @@
+.button-style-load-scene {
+    height: 36px;
+    width: 145px;
+    background-color: rgba(113, 113, 113, 255);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button-style-load-scene:hover {
+    height: 36px;
+    width: 145px;
+    background-color: rgb(74, 120, 57);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.button-style-load-scene:active {
+    height: 36px;
+    width: 145px;
+    background-color: rgb(72, 202, 24);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgba(204, 196, 196, 255);
+}
