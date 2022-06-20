@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginShiftEventChannel: {fileID: 11400000, guid: a35f85be92fb677499c6f2a3c8685ee8, type: 2}
+  TrailRenderers: []
 --- !u!1 &4805106565392877989
 GameObject:
   m_ObjectHideFlags: 0

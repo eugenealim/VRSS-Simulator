@@ -8,33 +8,37 @@ public class TrailRendererOriginShiftController : MonoBehaviour
     [SerializeField]
     private OriginShiftEventChannelSO OriginShiftEventChannel;
 
-    private TrailRenderer _trailRenderer;
-
-    private void Awake()
-    {
-        _trailRenderer = GetComponent<TrailRenderer>();
-    }
+    [SerializeField]
+    private TrailRenderer[] TrailRenderers;
 
     private void OnEnable()
     {
-        OriginShiftEventChannel.Raised += Shift;
+        OriginShiftEventChannel.Raised += OriginShift;
     }
 
     private void OnDisable()
     {
-        OriginShiftEventChannel.Raised -= Shift;
+        OriginShiftEventChannel.Raised -= OriginShift;
     }
 
-    private void Shift(Vector3 offset)
+    private void OriginShift(Vector3 offset)
     {
-        var positions = new Vector3[_trailRenderer.positionCount];
-        _trailRenderer.GetPositions(positions);
+        foreach (var trailRenderer in TrailRenderers)
+        {
+            OriginShift(trailRenderer, offset);
+        }
+    }
+
+    private void OriginShift(TrailRenderer trailRenderer, Vector3 offset)
+    {
+        var positions = new Vector3[trailRenderer.positionCount];
+        trailRenderer.GetPositions(positions);
 
         for (var i = 0; i < positions.Length; i++)
         {
             positions[i] += offset;
         }
 
-        _trailRenderer.SetPositions(positions);
+        trailRenderer.SetPositions(positions);
     }
 }
