@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4800889802205168826
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359619, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722663829989359628, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+      propertyPath: m_Name
+      value: CelestialRings PF
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+--- !u!1 &5235229209302790510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 722663830148216276, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+  m_PrefabInstance: {fileID: 4800889802205168826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8985903356419834666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235229209302790510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af85cc37c7f7c324fa5fe072e3fd3b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
