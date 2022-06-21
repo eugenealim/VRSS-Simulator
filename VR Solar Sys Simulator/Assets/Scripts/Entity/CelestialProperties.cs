@@ -13,6 +13,9 @@ public class CelestialProperties : MonoBehaviour
     [Tooltip("The GameObject that this object is attached to.")]
     public GameObject hostObj;
 
+    public bool hasOrbitingBodies = false;
+    public GameObject[] orbitingBodies;
+
     [Header("Rigid Body Parameters")]
 
     [Tooltip("('Scaled') Radius of Sphere = Half of Scale Component.")]
@@ -118,7 +121,10 @@ public class CelestialProperties : MonoBehaviour
             Vector3 radDist = hostObj.transform.position - gameObject.transform.position;
 
 
+            gameObject.transform.rotation = hostObj.transform.rotation;
             gameObject.transform.position = hostObj.transform.position + posVectorResult;
+
+
 
             dotProductOfAngMomAndVel = Vector3.Dot(angularMomentum, initDirection);
             dotProductOfVelAndRadial = Vector3.Dot(initDirection, radDist); // Should be 0 as h = v x r, all three are orthogonal

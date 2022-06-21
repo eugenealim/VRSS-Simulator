@@ -35,8 +35,6 @@ public class Gravity : MonoBehaviour
 
                 Vector3 gravForce = ((simSettings.gravitationalConstant * mass_i * mass_j) / (Mathf.Pow(Vector3.Distance(celestialList[j].transform.position, celestialList[i].transform.position), 2))) * direction;
 
-                //Debug.Log("Mass of celestial i = " + mass_i + " Mass of celestial j = " + mass_j + " || ");
-
                 celestialList[i].GetComponent<Rigidbody>().AddForce(gravForce);
                 celestialList[j].GetComponent<Rigidbody>().AddForce(-gravForce);
             }
