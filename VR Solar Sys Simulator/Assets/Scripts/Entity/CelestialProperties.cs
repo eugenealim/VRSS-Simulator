@@ -11,12 +11,12 @@ public class CelestialProperties : MonoBehaviour
     public GameObject systemObj; // This is searched for later on by name
 
     [Tooltip("The GameObject that this object is attached to.")]
-    public GameObject parentObj;
+    public GameObject hostObj;
 
     [Header("Rigid Body Parameters")]
 
     [Tooltip("('Scaled') Radius of Sphere = Half of Scale Component.")]
-    public float volumetricMeanRadius; // Celestial Size/Radius independent of parent's global scale, found by parentObj.transform.lossyScale
+    public float volumetricMeanRadius; // Celestial Size/Radius independent of parent's global scale, found by hostObj.transform.lossyScale
 
     [Tooltip("Mass of Body in Earth Masses.")]
     public float mass; // Mass of Celestial
@@ -62,11 +62,13 @@ public class CelestialProperties : MonoBehaviour
     public float dotProductOfAngMomAndVel;
 
     public Vector3 initDirection;
+    public Vector3 posVectorResult;
 
     private void Start()
     {
         PropertyUpdate();
     }
+
 
     /// <summary>
     /// Updates all properties in the Editor that are dependent on each other when OnValidate() executes. This keeps all positions, directions and times updated when necessary.
@@ -74,51 +76,49 @@ public class CelestialProperties : MonoBehaviour
     void PropertyUpdate()
     {
         // Check for a parent object, which usually will be a "Celestial" object
-        if (gameObject.transform.parent != null)
-        {
-            parentObj = gameObject.transform.parent.gameObject;
-        }
-        else
-        {
-            parentObj = null;
-        }
+        //if (gameObject.transform.parent != null)
+        //{
+        //    hostObj = gameObject.transform.parent.gameObject;
+        //}
+        //else
+        //{
+        //    hostObj = null;
+        //}
 
         systemObj = GameObject.Find("System"); // Finds GameObject with this name, this is the object in hierarchy w/ all simulation settings
         simSettings = systemObj.GetComponent<SimulationSettings>();
 
 
         // Below contains the main properties to be updated
-        if (parentObj.CompareTag("Celestial") || gameObject.name == "Sun" || gameObject.name.Contains("Grabbable Celestial")) // True if body this is attached to requires these properties to be updated. Doing such a condition prevents null errors without lots of conditionals. Only want updated properties for these conditions
+        if (hostObj.CompareTag("Celestial") || gameObject.name == "Sun" || gameObject.name.Contains("Grabbable Celestial")) // True if body this is attached to requires these properties to be updated. Doing such a condition prevents null errors without lots of conditionals. Only want updated properties for these conditions
         {
             gameObject.GetComponent<Rigidbody>().mass = mass;
             gameObject.GetComponent<Transform>().localScale = new Vector3(volumetricMeanRadius, volumetricMeanRadius, volumetricMeanRadius) * 2f; // Radius of Sphere is 0.5 Scale/Diameter, and we are treating these as perfect spheres
 
-            periapsisGlobal = periapsis * parentObj.transform.lossyScale.x;
-            apoapsisGlobal = apoapsis * parentObj.transform.lossyScale.x;
 
 
-            semiMajor = 0.5f * (periapsisGlobal + apoapsisGlobal); // Same as saying 2a = r_P + r_A as explained in report/notes etc.
+            semiMajor = 0.5f * (periapsis + apoapsis); // Same as saying 2a = r_P + r_A as explained in report/notes etc.
 
             eccentricity = (apoapsis - periapsis) / (periapsis + apoapsis); // Changed 09/04/22 to match derivations
 
             angularMomentum = Quaternion.Euler(0, rightAscension, inclination) * Vector3.up; // Rotates specific angular momentum vector from the initial 'up' (Y) position (which comes from first setting the positions of bodies in the XZ plane)
 
-            Vector3 posVectorResult = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * new Vector3(periapsis, 0, 0); // transforms/rotates periapsis position vector to not be aligned in the XZ plane with other celestials
+            posVectorResult = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * new Vector3(periapsis, 0, 0); // transforms/rotates periapsis position vector to not be aligned in the XZ plane with other celestials
             initDirection = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * Vector3.forward; // applies same transform/rotation as applied to periapsis rotation vector where velocity was originally in 'forward' direction (used in SimulationSettings.cs)
 
-            if (parentObj.CompareTag("Celestial"))
-            {
-                orbitalPeriod = Mathf.Sqrt(4 * Mathf.Pow(Mathf.PI, 2) * Mathf.Pow((semiMajor), 3f) / (simSettings.gravitationalConstant * (mass + parentObj.GetComponent<Rigidbody>().mass))); // Using K3L
-            }
-            else
-            {
-                orbitalPeriod = 0;
-            }
+            //if (hostObj.CompareTag("Celestial"))
+            //{
+            //    orbitalPeriod = Mathf.Sqrt(4 * Mathf.Pow(Mathf.PI, 2) * Mathf.Pow((semiMajor), 3f) / (simSettings.gravitationalConstant * (mass + hostObj.GetComponent<Rigidbody>().mass))); // Using K3L
+            //}
+            //else
+            //{
+            //    orbitalPeriod = 0;
+            //}
 
-            Vector3 radDist = parentObj.transform.position - gameObject.transform.position;
+            Vector3 radDist = hostObj.transform.position - gameObject.transform.position;
 
 
-            gameObject.transform.localPosition = posVectorResult;
+            gameObject.transform.position = hostObj.transform.position + posVectorResult;
 
             dotProductOfAngMomAndVel = Vector3.Dot(angularMomentum, initDirection);
             dotProductOfVelAndRadial = Vector3.Dot(initDirection, radDist); // Should be 0 as h = v x r, all three are orthogonal
@@ -130,9 +130,9 @@ public class CelestialProperties : MonoBehaviour
     }
 
     // Assign the above parameters to the gameObject
-    void OnValidate()
+    private void OnValidate()
     {
-        //PropertyUpdate();
+        PropertyUpdate();
     }
 
 }

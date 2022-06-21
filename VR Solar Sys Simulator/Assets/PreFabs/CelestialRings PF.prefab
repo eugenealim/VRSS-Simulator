@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 722663829989359618}
   - component: {fileID: 722663829989359629}
   - component: {fileID: 824711683580816549}
+  - component: {fileID: 7352378635645137598}
   m_Layer: 0
   m_Name: CelestialRings PF
   m_TagString: Celestial
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722663829989359628}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7346e5fc1fb4324ea791fc7630a0df1, type: 3}
   m_Name: 
@@ -259,6 +260,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
+--- !u!114 &7352378635645137598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722663829989359628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496f5fc85918e7841b606857cf7d91d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  celestialList: []
+  MainBody: {fileID: 0}
+  OrbitingBodies: []
 --- !u!1 &722663830148216276
 GameObject:
   m_ObjectHideFlags: 0
