@@ -135,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1165026191767957367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d683e6d379edc4cb97f03f1ab0b1e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 92304cfae1274444385ecc9fa1d6b898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CelestialPopUp: {fileID: 4975377554823636598}
@@ -580,10 +580,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4767479211296667536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9a20bbb685aca4ab05313647f06e8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0405ec0040738cf46a4137c5009babd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginShiftEventChannel: {fileID: 11400000, guid: a35f85be92fb677499c6f2a3c8685ee8, type: 2}
+  OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
 --- !u!1 &4805106565392877989
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,15 +646,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4805106565392877989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818d83c5565e14448915970687c75eff, type: 3}
+  m_Script: {fileID: 11500000, guid: d7346e5fc1fb4324ea791fc7630a0df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   systemObj: {fileID: 0}
-  parentObj: {fileID: 0}
+  hostObj: {fileID: 4805106565392877989}
   volumetricMeanRadius: 1
   mass: 1
   dayPeriod: 1
-  obliquityToOrbit: 0
+  obliquityToOrbit: 1
   periapsis: 0
   apoapsis: 0
   inclination: 0
@@ -662,13 +662,14 @@ MonoBehaviour:
   argumentOfPeriapsis: 0
   periapsisGlobal: 0
   apoapsisGlobal: 0
-  semiMajor: 1
-  eccentricity: -0
-  orbitalPeriod: 6.2831855
-  angularMomentum: {x: 0, y: 0, z: 0}
+  semiMajor: 0
+  eccentricity: NaN
+  orbitalPeriod: 0
+  angularMomentum: {x: 0, y: 1, z: 0}
   dotProductOfVelAndRadial: 0
   dotProductOfAngMomAndVel: 0
-  initDirection: {x: 0, y: 0, z: 0}
+  initDirection: {x: 0, y: 0, z: 1}
+  posVectorResult: {x: 0, y: 0, z: 0}
 --- !u!1 &7037086661060017221
 GameObject:
   m_ObjectHideFlags: 0
