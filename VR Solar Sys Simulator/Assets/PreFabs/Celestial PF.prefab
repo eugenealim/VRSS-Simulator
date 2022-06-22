@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 722663829989359628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 722663830148216277}
@@ -228,8 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   systemObj: {fileID: 0}
   hostObj: {fileID: 0}
-  hasOrbitingBodies: 0
-  orbitingBodies: []
   volumetricMeanRadius: 1
   mass: 1
   dayPeriod: 1
@@ -613,6 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722663830881194138}
   - component: {fileID: 722663830881194139}
+  - component: {fileID: 2885597092355195633}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -734,6 +733,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &2885597092355195633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722663830881194117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0405ec0040738cf46a4137c5009babd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
 --- !u!1 &722663830932198128
 GameObject:
   m_ObjectHideFlags: 0

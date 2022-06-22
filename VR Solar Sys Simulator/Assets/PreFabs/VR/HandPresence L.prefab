@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897ef1142906ad14e8cd1ab2b07f6eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showController: 1
+  controllerCharacteristics: 0
+  controllerPrefabs:
+  - {fileID: 1000013750628434, guid: b10a4c7080e4e3c44bb60ffbaa5d0206, type: 3}
+  handModelPrefab: {fileID: 143668, guid: e6ba3498ffa1e534b91a07264266e6b8, type: 3}
