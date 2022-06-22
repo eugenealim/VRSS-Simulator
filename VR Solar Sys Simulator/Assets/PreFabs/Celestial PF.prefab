@@ -240,12 +240,12 @@ MonoBehaviour:
   periapsisGlobal: 0
   apoapsisGlobal: 0
   semiMajor: 0
-  eccentricity: 0
+  eccentricity: NaN
   orbitalPeriod: 0
-  angularMomentum: {x: 0, y: 0, z: 0}
+  angularMomentum: {x: 0, y: 1, z: 0}
   dotProductOfVelAndRadial: 0
   dotProductOfAngMomAndVel: 0
-  initDirection: {x: 0, y: 0, z: 0}
+  initDirection: {x: 0, y: 0, z: 1}
   posVectorResult: {x: 0, y: 0, z: 0}
 --- !u!114 &824711683580816549
 MonoBehaviour:
