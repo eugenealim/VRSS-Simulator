@@ -54,6 +54,10 @@ public class SimulationSettings : MonoBehaviour
         celestials = GameObject.FindGameObjectsWithTag("Celestial"); // Collates all GameObjects w/ "Celestial" tag into an array
         //particleSystems = GameObject.FindGameObjectsWithTag("ParticleSystem"); // Collates any GameObjects w/ "ParticleSystem" tag like above. This is used specifically for particle systems or anything that should be treated as one
     }
+    private void OnValidate()
+    {
+        gravitationalConstant = 4f * Mathf.Pow(Mathf.PI / (365.26f), 2f) * Mathf.Pow(lengthUnit, 3f) * Mathf.Pow(massUnit * celestials[0].GetComponent<Rigidbody>().mass, -1f) * Mathf.Pow(timeUnit, -2f); // Calculates the G constant based off K3L using the custom Unity scale/units
+    }
 
     // Update is called once per rendered frame
     void Update()

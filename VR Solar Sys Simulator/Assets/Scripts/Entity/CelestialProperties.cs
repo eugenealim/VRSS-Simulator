@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CelestialProperties : MonoBehaviour
 {
-    SimulationSettings simSettings;
+    //SimulationSettings simSettings;
 
     [Tooltip("The Empty GameObject which the Solar System simulation runs from.")]
     public GameObject systemObj; // This is searched for later on by name
@@ -13,8 +13,8 @@ public class CelestialProperties : MonoBehaviour
     [Tooltip("The GameObject that this object is attached to.")]
     public GameObject hostObj;
 
-    public bool hasOrbitingBodies = false;
-    public GameObject[] orbitingBodies;
+    //public bool hasOrbitingBodies = false;
+    //public GameObject[] orbitingBodies;
 
     [Header("Rigid Body Parameters")]
 
@@ -78,60 +78,61 @@ public class CelestialProperties : MonoBehaviour
     /// </summary>
     void PropertyUpdate()
     {
-        // Check for a parent object, which usually will be a "Celestial" object
-        //if (gameObject.transform.parent != null)
-        //{
-        //    hostObj = gameObject.transform.parent.gameObject;
-        //}
-        //else
-        //{
-        //    hostObj = null;
-        //}
-
         systemObj = GameObject.Find("System"); // Finds GameObject with this name, this is the object in hierarchy w/ all simulation settings
-        simSettings = systemObj.GetComponent<SimulationSettings>();
+                                               //simSettings = systemObj.GetComponent<SimulationSettings>();
+                                               //Check for a parent object, which usually will be a "Celestial" object
+        if (gameObject.transform.parent != null && gameObject.name != "Sun")
+        {
+            hostObj = gameObject.transform.parent.gameObject;
+        }
+        else if (gameObject.transform.parent != null && gameObject.name == "Sun")
+        {
+            hostObj = systemObj;
+        }
 
 
         // Below contains the main properties to be updated
-        if (hostObj.CompareTag("Celestial") || gameObject.name == "Sun" || gameObject.name.Contains("Grabbable Celestial")) // True if body this is attached to requires these properties to be updated. Doing such a condition prevents null errors without lots of conditionals. Only want updated properties for these conditions
-        {
-            gameObject.GetComponent<Rigidbody>().mass = mass;
-            gameObject.GetComponent<Transform>().localScale = new Vector3(volumetricMeanRadius, volumetricMeanRadius, volumetricMeanRadius) * 2f; // Radius of Sphere is 0.5 Scale/Diameter, and we are treating these as perfect spheres
+        //if (hostObj.CompareTag("Celestial") || gameObject.name == "Sun" || gameObject.name.Contains("Grabbable Celestial")) // True if body this is attached to requires these properties to be updated. Doing such a condition prevents null errors without lots of conditionals. Only want updated properties for these conditions
+        //{
+        gameObject.GetComponent<Rigidbody>().mass = mass;
+        gameObject.GetComponent<Transform>().localScale = new Vector3(volumetricMeanRadius, volumetricMeanRadius, volumetricMeanRadius) * 2f; // Radius of Sphere is 0.5 Scale/Diameter, and we are treating these as perfect spheres
+
+        periapsisGlobal = periapsis * hostObj.transform.lossyScale.x;
+        apoapsisGlobal = apoapsis * hostObj.transform.lossyScale.x;
+
+
+        semiMajor = 0.5f * (periapsisGlobal + apoapsisGlobal); // Same as saying 2a = r_P + r_A as explained in report/notes etc.
+
+        eccentricity = (apoapsisGlobal - periapsisGlobal) / (periapsisGlobal + apoapsisGlobal); // Changed 09/04/22 to match derivations
+
+        angularMomentum = Quaternion.Euler(0, rightAscension, inclination) * Vector3.up; // Rotates specific angular momentum vector from the initial 'up' (Y) position (which comes from first setting the positions of bodies in the XZ plane)
+
+        posVectorResult = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * new Vector3(periapsisGlobal, 0, 0); // transforms/rotates periapsis position vector to not be aligned in the XZ plane with other celestials
+        initDirection = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * Vector3.forward; // applies same transform/rotation as applied to periapsis rotation vector where velocity was originally in 'forward' direction (used in SimulationSettings.cs)
+
+        //if (hostObj.CompareTag("Celestial"))
+        //{
+        //    orbitalPeriod = Mathf.Sqrt(4 * Mathf.Pow(Mathf.PI, 2) * Mathf.Pow((semiMajor), 3f) / (simSettings.gravitationalConstant * (mass + hostObj.GetComponent<Rigidbody>().mass))); // Using K3L
+        //}
+        //else
+        //{
+        //    orbitalPeriod = 0;
+        //}
+
+        Vector3 radDist = hostObj.transform.position - gameObject.transform.position;
+
+
+        gameObject.transform.rotation = hostObj.transform.rotation;
+        gameObject.transform.position = hostObj.transform.position + posVectorResult;
 
 
 
-            semiMajor = 0.5f * (periapsis + apoapsis); // Same as saying 2a = r_P + r_A as explained in report/notes etc.
+        dotProductOfAngMomAndVel = Vector3.Dot(angularMomentum, initDirection);
+        dotProductOfVelAndRadial = Vector3.Dot(initDirection, radDist); // Should be 0 as h = v x r, all three are orthogonal
 
-            eccentricity = (apoapsis - periapsis) / (periapsis + apoapsis); // Changed 09/04/22 to match derivations
-
-            angularMomentum = Quaternion.Euler(0, rightAscension, inclination) * Vector3.up; // Rotates specific angular momentum vector from the initial 'up' (Y) position (which comes from first setting the positions of bodies in the XZ plane)
-
-            posVectorResult = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * new Vector3(periapsis, 0, 0); // transforms/rotates periapsis position vector to not be aligned in the XZ plane with other celestials
-            initDirection = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * Vector3.forward; // applies same transform/rotation as applied to periapsis rotation vector where velocity was originally in 'forward' direction (used in SimulationSettings.cs)
-
-            //if (hostObj.CompareTag("Celestial"))
-            //{
-            //    orbitalPeriod = Mathf.Sqrt(4 * Mathf.Pow(Mathf.PI, 2) * Mathf.Pow((semiMajor), 3f) / (simSettings.gravitationalConstant * (mass + hostObj.GetComponent<Rigidbody>().mass))); // Using K3L
-            //}
-            //else
-            //{
-            //    orbitalPeriod = 0;
-            //}
-
-            Vector3 radDist = hostObj.transform.position - gameObject.transform.position;
-
-
-            gameObject.transform.rotation = hostObj.transform.rotation;
-            gameObject.transform.position = hostObj.transform.position + posVectorResult;
-
-
-
-            dotProductOfAngMomAndVel = Vector3.Dot(angularMomentum, initDirection);
-            dotProductOfVelAndRadial = Vector3.Dot(initDirection, radDist); // Should be 0 as h = v x r, all three are orthogonal
-
-            Vector3 angularVelocity = (2 * Mathf.PI / dayPeriod) * Vector3.up; // Causes planet to rotate about its 'up' axis.
-            gameObject.GetComponent<Rigidbody>().angularVelocity = Quaternion.AngleAxis(obliquityToOrbit, Vector3.right) * angularVelocity; // Rotates north pole axis
-        }
+        Vector3 angularVelocity = (2 * Mathf.PI / dayPeriod) * Vector3.up; // Causes planet to rotate about its 'up' axis.
+        gameObject.GetComponent<Rigidbody>().angularVelocity = Quaternion.AngleAxis(obliquityToOrbit, Vector3.right) * angularVelocity; // Rotates north pole axis
+        //}
 
     }
 
