@@ -8,10 +8,13 @@ public class VRCelestialSelector : MonoBehaviour
     public bool refreshDropdown;
     [SerializeField]
     public bool autopilotEngaged = false;
+    public bool targetingEngaged = false;
+    public bool followingEngaged = false;
     public GameObject player;
     public GameObject dropdown;
     public Dropdown dropdownMenu;
     private VRCamSwitch VRCamSwitch;
+    private SimulationSettings simulationSettings;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +27,22 @@ public class VRCelestialSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-    private void FixedUpdate()
-    {
-        if (autopilotEngaged)
+        if (autopilotEngaged && !targetingEngaged && !followingEngaged)
         {
             AutoPilotEngaged();
         }
+        if (targetingEngaged)
+        {
+            TargetingEngaged();
+        }
+        if (followingEngaged)
+        {
+            FollowEngaged();
+        }
+    }
+    private void FixedUpdate()
+    {
+       
     }
 
     private void OnValidate()
@@ -61,6 +72,40 @@ public class VRCelestialSelector : MonoBehaviour
         VRCamSwitch.celNumber = dropdown.GetComponent<Dropdown>().value;
     }
 
+    public void TargetingEngagedToggleButton(bool toggle)
+    {
+        if (toggle == true)
+        {
+            targetingEngaged = true;
+        }
+        else if (toggle == false)
+        {
+            targetingEngaged = false;
+        }
+    }
+
+    public void TargetingEngaged()
+    {
+        player.transform.LookAt(VRCamSwitch.objectPosition, Vector3.up); // Instantly looks at target celestial
+    }
+
+    public void FollowEngagedToggleButton(bool toggle)
+    {
+        if (toggle == true)
+        {
+            followingEngaged = true;
+        }
+        else if (toggle == false)
+        {
+            followingEngaged = false;
+        }
+    }
+
+    public void FollowEngaged()
+    {
+        //player.GetComponent<Rigidbody>().velocity = simulationSettings.celestials[VRCamSwitch.celNumber].GetComponent<Rigidbody>().velocity;
+    }
+
     public void AutoPilotToggleButton(bool toggle)
     {
         if (toggle == true)
@@ -75,8 +120,8 @@ public class VRCelestialSelector : MonoBehaviour
 
     public void AutoPilotEngaged()
     {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + VRCamSwitch.offset, player.GetComponent<VRContinuousMovement>().speed * Time.deltaTime);
-        player.transform.LookAt(VRCamSwitch.objectPosition, Vector3.up);
+        player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + 3f*VRCamSwitch.offset, player.GetComponent<VRContinuousMovement>().speed * Time.deltaTime); // Slowly moves player towards targeted celestial
+        player.transform.LookAt(VRCamSwitch.objectPosition, Vector3.up); // Instantly looks at target celestial
     }
 
 }

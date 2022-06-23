@@ -38,10 +38,12 @@ public class UIArrowButtons : MonoBehaviour
         FloatingOrigin.GetComponent<SphereCollider>().radius *= 2f;
         //RightRay.GetComponent<LineRenderer>().widthMultiplier *= 2f;
         //LeftRay.GetComponent<LineRenderer>().widthMultiplier *= 2f;
-        RightRay.GetComponent<XRInteractorLineVisual>().lineLength *= 10f;
+        RightRay.GetComponent<XRInteractorLineVisual>().lineLength *= 2f;
         RightRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 2f;
-        LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 10f;
+        RightRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 2f;
+        LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 2;
         LeftRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 2f;
+        LeftRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 2f;
     }
 
     public void DecreaseSize()
@@ -52,9 +54,11 @@ public class UIArrowButtons : MonoBehaviour
         FloatingOrigin.GetComponent<SphereCollider>().radius *= 0.5f;
         //RightRay.GetComponent<LineRenderer>().widthMultiplier *= 0.5f;
         //LeftRay.GetComponent<LineRenderer>().widthMultiplier *= 0.5f;
-        RightRay.GetComponent<XRInteractorLineVisual>().lineLength *= 0.9f;
+        RightRay.GetComponent<XRInteractorLineVisual>().lineLength *= 0.5f;
         RightRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 0.5f;
-        LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 0.9f;
+        RightRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 0.5f;
+        LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 0.5f;
         LeftRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 0.5f;
+        LeftRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 0.5f;
     }
 }
