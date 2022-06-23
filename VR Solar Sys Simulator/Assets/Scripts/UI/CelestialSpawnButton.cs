@@ -7,6 +7,7 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
 {
     [Tooltip("PreFab that is used for instantiating a grabbable object.")]
     public GameObject grabbablePreFab;
+    public bool ringsEnabled;
     [Tooltip("GameObject used to use as the instantiated object.")]
     public GameObject systemObj;
     [Tooltip("Transform used to spawn relative to. Typically set to whatever object to spawn in front of the player.")]
@@ -34,8 +35,23 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
         VRCelSel = systemObj.GetComponent<VRCelestialSelector>();
         simSettings = systemObj.GetComponent<SimulationSettings>();
         // parent = gameObject; // This script is to be attached to the "System" GameObject used for a lot of the simulation settings
+        grabbablePreFab = (GameObject)Resources.Load("PreFabs/Celestial PF", typeof(GameObject));
         celNewLength = simSettings.celestials.Length;
         Debug.Log("CelNewLength is " + celNewLength);
+    }
+
+    private void OnValidate()
+    {
+        if (!ringsEnabled)
+        {
+            grabbablePreFab = (GameObject)Resources.Load("PreFabs/Celestial PF", typeof(GameObject));
+
+        }
+        else if (ringsEnabled)
+        {
+            grabbablePreFab = (GameObject)Resources.Load("PreFabs/CelestialRings PF", typeof(GameObject));
+
+        }
     }
 
     // Update is called once per frame

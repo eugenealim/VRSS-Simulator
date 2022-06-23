@@ -7,6 +7,7 @@ public class VRCelestialEditor : MonoBehaviour
 {
     public GameObject properties;
     VRCamSwitch VRCamSwitch;
+    VRCelestialSelector VRCelestialSelector;
     SimulationSettings simSettings;
 
     public InputField massInput;
@@ -18,6 +19,7 @@ public class VRCelestialEditor : MonoBehaviour
     {
         VRCamSwitch = gameObject.GetComponent<VRCamSwitch>();
         simSettings = gameObject.GetComponent<SimulationSettings>();
+        VRCelestialSelector = gameObject.GetComponent<VRCelestialSelector>();
     }
 
     // Update is called once per frame
@@ -62,6 +64,9 @@ public class VRCelestialEditor : MonoBehaviour
         {
             Destroy(simSettings.celestials[i]);
         }
+        simSettings.celestials = new GameObject[0];
+        VRCelestialSelector.dropdownMenu.ClearOptions();
+
     }
 
     // The ChangeProperty functions are called whenever their respective input fields are "submitted", this could be by pressing enter or clicking away

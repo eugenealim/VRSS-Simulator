@@ -2122,7 +2122,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0.67859125, a: 0}
+    key0: {r: 1, g: 0, b: 0.67859125, a: 0.7058824}
     key1: {r: 1, g: 0, b: 0.67859125, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -2149,7 +2149,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  m_SmoothMovement: 0
+  m_SmoothMovement: 1
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}
@@ -2542,7 +2542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195439327182f0a4880b0053d6ce3db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbablePreFab: {fileID: 0}
+  grabbablePreFab: {fileID: 722663829989359628, guid: 5f17c180423cb0c4389ddca297804f95, type: 3}
+  ringsEnabled: 0
   systemObj: {fileID: 0}
   spawnLocation: {fileID: 0}
   spawnCooldown: 3
@@ -6657,7 +6658,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0.67859125, a: 0}
+    key0: {r: 1, g: 0, b: 0.67859125, a: 0.7058824}
     key1: {r: 1, g: 0, b: 0.67859125, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -6684,7 +6685,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  m_SmoothMovement: 0
+  m_SmoothMovement: 1
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
   m_Reticle: {fileID: 0}

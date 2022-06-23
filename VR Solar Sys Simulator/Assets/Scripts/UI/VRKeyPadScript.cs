@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class VRKeypadScript : MonoBehaviour
+public class VRKeyPadScript : MonoBehaviour
 {
     public GameObject system;
     VRCamSwitch camSwitch;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 722663829764883884}
   - component: {fileID: 722663829764883874}
   - component: {fileID: 722663829764883885}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 722663829979591108}
   - component: {fileID: 722663829979591130}
   - component: {fileID: 722663829979591109}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,10 +172,10 @@ GameObject:
   - component: {fileID: 722663829989359618}
   - component: {fileID: 722663829989359629}
   - component: {fileID: 824711683580816549}
-  - component: {fileID: 126322802442906519}
-  - component: {fileID: 863624233067885123}
+  - component: {fileID: 5638912357069982708}
+  - component: {fileID: 5426226911346190668}
   m_Layer: 0
-  m_Name: CelestialRings PF
+  m_Name: Celestial PF
   m_TagString: Celestial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemObj: {fileID: 0}
-  hostObj: {fileID: 0}
+  hostObj: {fileID: 722663829989359628}
   volumetricMeanRadius: 1
   mass: 1
   dayPeriod: 1
@@ -242,12 +242,12 @@ MonoBehaviour:
   periapsisGlobal: 0
   apoapsisGlobal: 0
   semiMajor: 0
-  eccentricity: 0
+  eccentricity: NaN
   orbitalPeriod: 0
-  angularMomentum: {x: 0, y: 0, z: 0}
+  angularMomentum: {x: 0, y: 1, z: 0}
   dotProductOfVelAndRadial: 0
   dotProductOfAngMomAndVel: 0
-  initDirection: {x: 0, y: 0, z: 0}
+  initDirection: {x: 0, y: 0, z: 1}
   posVectorResult: {x: 0, y: 0, z: 0}
 --- !u!114 &824711683580816549
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
---- !u!114 &126322802442906519
+--- !u!114 &5638912357069982708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,7 +280,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!135 &863624233067885123
+--- !u!135 &5426226911346190668
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,7 +402,6 @@ GameObject:
   - component: {fileID: 722663830148216296}
   - component: {fileID: 722663830148216299}
   - component: {fileID: 722663830148216298}
-  - component: {fileID: 5778624728571102305}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -421,8 +420,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8648267415101875552}
+  m_Children: []
   m_Father: {fileID: 722663829989359619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -489,22 +487,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5778624728571102305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722663830148216276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af85cc37c7f7c324fa5fe072e3fd3b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  segments: 360
-  innerRadius: 0.7
-  thickness: 0.5
-  ringMat: {fileID: 2100000, guid: fcf7a782a845b6745a042c0470f30189, type: 2}
 --- !u!1 &722663830203183001
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +499,7 @@ GameObject:
   - component: {fileID: 722663830203183005}
   - component: {fileID: 722663830203183004}
   - component: {fileID: 722663830203183007}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +622,7 @@ GameObject:
   - component: {fileID: 722663830475607229}
   - component: {fileID: 722663830475607228}
   - component: {fileID: 722663830475607231}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PopUp Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722663830881194138}
   - component: {fileID: 722663830881194139}
-  - component: {fileID: 8821176989742503538}
+  - component: {fileID: 2885597092355195633}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -777,7 +759,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 722663829989359619}
   m_RootOrder: 1
@@ -833,7 +815,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.05696106
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -881,7 +863,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &8821176989742503538
+--- !u!114 &2885597092355195633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -954,86 +936,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CelestialPopUp: {fileID: 722663830475607218}
   Player: {fileID: 0}
---- !u!1 &8497858546229891311
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8648267415101875552}
-  - component: {fileID: 4177391158066653016}
-  - component: {fileID: 9095826216762013634}
-  m_Layer: 0
-  m_Name: Sphere Ring
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8648267415101875552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497858546229891311}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 722663830148216277}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4177391158066653016
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497858546229891311}
-  m_Mesh: {fileID: 0}
---- !u!23 &9095826216762013634
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497858546229891311}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: fcf7a782a845b6745a042c0470f30189, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}

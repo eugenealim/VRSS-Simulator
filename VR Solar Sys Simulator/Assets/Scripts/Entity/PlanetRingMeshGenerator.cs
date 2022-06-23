@@ -60,7 +60,8 @@ public class PlanetRingMeshGenerator : MonoBehaviour // Taken from video tutoria
             ringMR = ring.GetComponent<MeshRenderer>();
         }
         ringMesh = new Mesh();
-        ringMF.sharedMesh = ringMesh;
+        //ringMF.sharedMesh = ringMesh;
+        ringMF.mesh = ringMesh;
 
 
 
