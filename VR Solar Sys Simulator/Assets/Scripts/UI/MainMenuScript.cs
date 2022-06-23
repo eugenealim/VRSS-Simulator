@@ -10,7 +10,7 @@ public class MainMenuScript : MonoBehaviour
     // Start is called before the first frame update
     public void EnterSimulation()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Dev Scene");
     }
 
     // Update is called once per frame

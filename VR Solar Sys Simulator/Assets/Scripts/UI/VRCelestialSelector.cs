@@ -20,6 +20,7 @@ public class VRCelestialSelector : MonoBehaviour
     void Start()
     {
         VRCamSwitch = GetComponent<VRCamSwitch>();
+        simulationSettings = GetComponent<SimulationSettings>();
         PopulateDropdown(dropdownMenu, gameObject.GetComponent<SimulationSettings>().celestials);
         UpdateCelNumber();
     }
@@ -27,7 +28,11 @@ public class VRCelestialSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (autopilotEngaged && !targetingEngaged && !followingEngaged)
+        
+    }
+    private void FixedUpdate()
+    {
+        if (autopilotEngaged)
         {
             AutoPilotEngaged();
         }
@@ -39,10 +44,6 @@ public class VRCelestialSelector : MonoBehaviour
         {
             FollowEngaged();
         }
-    }
-    private void FixedUpdate()
-    {
-       
     }
 
     private void OnValidate()
@@ -103,7 +104,9 @@ public class VRCelestialSelector : MonoBehaviour
 
     public void FollowEngaged()
     {
-        //player.GetComponent<Rigidbody>().velocity = simulationSettings.celestials[VRCamSwitch.celNumber].GetComponent<Rigidbody>().velocity;
+        //player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + 2f * VRCamSwitch.offset, simulationSettings.celestials[VRCamSwitch.celNumber].GetComponent<Rigidbody>().velocity.magnitude * Time.deltaTime); // Slowly moves player towards targeted celestial
+
+        player.transform.position = VRCamSwitch.objectPosition + 2f*VRCamSwitch.offset;
     }
 
     public void AutoPilotToggleButton(bool toggle)
@@ -120,7 +123,7 @@ public class VRCelestialSelector : MonoBehaviour
 
     public void AutoPilotEngaged()
     {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + 3f*VRCamSwitch.offset, player.GetComponent<VRContinuousMovement>().speed * Time.deltaTime); // Slowly moves player towards targeted celestial
+        player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + 2f*VRCamSwitch.offset, player.GetComponent<VRContinuousMovement>().speed * Time.fixedDeltaTime); // Slowly moves player towards targeted celestial
         player.transform.LookAt(VRCamSwitch.objectPosition, Vector3.up); // Instantly looks at target celestial
     }
 
