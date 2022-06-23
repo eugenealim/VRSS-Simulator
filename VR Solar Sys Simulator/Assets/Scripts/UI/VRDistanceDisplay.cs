@@ -6,6 +6,7 @@ public class VRDistanceDisplay : MonoBehaviour
 {
     // Simplified VR version of the non-VR script which similar namespace due to redefinition of the cameras
     public GameObject sun;
+    private GameObject tempStar;
     public GameObject freeCam;
 
     VRCamSwitch VRCamSwitch;
@@ -31,6 +32,28 @@ public class VRDistanceDisplay : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() //use this for any motion related calculation since it takes into account the timeScale
     {
+        if (sun == null)
+        {
+            sun = system;
+            //if (simulation.celestials.Length > 0)
+            //{
+            //    tempStar = gameObject.GetComponent<SimulationSettings>().celestials[0].gameObject;
+            //}
+            //else
+            //{
+            //    tempStar = null;
+            //}
+
+            //if (tempStar.name == "Sun" || tempStar.name == "Star")
+            //{
+            //    sun = tempStar;
+            //}
+            //else
+            //{
+            //    sun = system;
+            //}
+        }
+        
         thisFramePos = freeCam.transform.position;
 
         velocity = Vector3.Distance(thisFramePos, lastFramePos) / (0.02f);

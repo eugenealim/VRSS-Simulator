@@ -54,7 +54,7 @@ public class VRCamSwitch : MonoBehaviour
         //    }
         //}
 
-        if (gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value == 0) // Speeds up update rate for focusCam in seconds/sec timeframe
+        if (gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value == 0 && gameObject.GetComponent<SimulationSettings>().celestials.Length > 0) // Speeds up update rate for focusCam in seconds/sec timeframe
         {
             UpdateFocusCamera();
         }
@@ -64,7 +64,7 @@ public class VRCamSwitch : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value != 0) // Focus onto celestial[celNumber] in faster timeframes
+        if (gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value != 0 && gameObject.GetComponent<SimulationSettings>().celestials.Length > 0) // Focus onto celestial[celNumber] in faster timeframes
         {
             UpdateFocusCamera();
         }

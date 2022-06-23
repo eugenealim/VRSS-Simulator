@@ -35,10 +35,5 @@ public class FloatingOriginController : MonoBehaviour
             OriginShiftEventChannel.Raise(-referencePosition);
             Debug.Log("FloatingOriginController.cs raised Origin Shift Event");
         }
-
-        //if (SystemObject != null)
-        //{
-        //    PlayerTransform = SystemObject.GetComponent<CameraFocus>().currentCamera.transform;
-        //}
     }
 }

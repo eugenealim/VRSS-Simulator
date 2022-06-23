@@ -180,7 +180,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18833671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -252,10 +252,36 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1570498607}
+        m_TargetAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRRayInteractor,
+          Unity.XR.Interaction.Toolkit
+        m_MethodName: set_useForceGrab
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1570498607}
+        m_TargetAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.XRRayInteractor,
+          Unity.XR.Interaction.Toolkit
+        m_MethodName: set_useForceGrab
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -5134,10 +5160,14 @@ PrefabInstance:
     - target: {fileID: 3966747604843762855, guid: 835e86bb2bbb1184f9a21877b637aef7, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 781449552}
+      objectReference: {fileID: 1979113403}
     - target: {fileID: 3966747604843762855, guid: 835e86bb2bbb1184f9a21877b637aef7, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: RingsToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966747604843762855, guid: 835e86bb2bbb1184f9a21877b637aef7, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CelestialSpawnButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3966747605031080866, guid: 835e86bb2bbb1184f9a21877b637aef7, type: 3}
       propertyPath: m_Layer
@@ -6033,6 +6063,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 857905239764372713, guid: ebdb36c026cac91438f0ef56fcb19a78, type: 3}
   m_PrefabInstance: {fileID: 857905239206965835}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570498607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 857905239764372717, guid: ebdb36c026cac91438f0ef56fcb19a78, type: 3}
+  m_PrefabInstance: {fileID: 857905239206965835}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570498603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1583750013
 PrefabInstance:
   m_ObjectHideFlags: 0

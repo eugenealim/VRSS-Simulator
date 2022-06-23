@@ -13,6 +13,11 @@ public class Gravity : MonoBehaviour
         celestialList = simSettings.celestials;
     }
 
+    private void Update()
+    {
+        celestialList = simSettings.celestials;
+    }
+
     private void FixedUpdate()
     {
         GravityCalc();

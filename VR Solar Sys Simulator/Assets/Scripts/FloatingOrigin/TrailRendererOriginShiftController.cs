@@ -8,11 +8,20 @@ public class TrailRendererOriginShiftController : MonoBehaviour
     [SerializeField]
     private OriginShiftEventChannelSO OriginShiftEventChannel;
 
-    private TrailRenderer _trailRenderer;
+    [SerializeField]
+    //private List<TrailRenderer> TrailRenderers;
+    private TrailRenderer trailRenderer;
 
-    private void Awake()
+    private void Start()
     {
-        _trailRenderer = GetComponent<TrailRenderer>();
+        //TrailRenderers.Add(gameObject.GetComponent<TrailRenderer>());
+        FindTrailRenderer(gameObject);
+    }
+
+    public void FindTrailRenderer(GameObject gameObj)
+    {
+        //TrailRenderers.Add(gameObject.GetComponent<TrailRenderer>());
+        trailRenderer = gameObj.GetComponent<TrailRenderer>();
     }
 
     private void OnEnable()
@@ -27,14 +36,35 @@ public class TrailRendererOriginShiftController : MonoBehaviour
 
     private void Shift(Vector3 offset)
     {
-        var positions = new Vector3[_trailRenderer.positionCount];
-        _trailRenderer.GetPositions(positions);
+        var positions = new Vector3[trailRenderer.positionCount];
+        trailRenderer.GetPositions(positions);
 
         for (var i = 0; i < positions.Length; i++)
         {
             positions[i] += offset;
         }
 
-        _trailRenderer.SetPositions(positions);
+        trailRenderer.SetPositions(positions);
     }
+
+    //private void OriginShift(Vector3 offset)
+    //{
+    //    foreach (var trailRenderer in TrailRenderers)
+    //    {
+    //        OriginShift(trailRenderer, offset);
+    //    }
+    //}
+
+    //private void OriginShift(TrailRenderer trailRenderer, Vector3 offset)
+    //{
+    //    var positions = new Vector3[trailRenderer.positionCount];
+    //    trailRenderer.GetPositions(positions);
+
+    //    for (var i = 0; i < positions.Length; i++)
+    //    {
+    //        positions[i] += offset;
+    //    }
+
+    //    trailRenderer.SetPositions(positions);
+    //}
 }

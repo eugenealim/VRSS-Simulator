@@ -133,6 +133,7 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
     {
         spawnedObj = (GameObject)Instantiate(grabbablePreFab, gameObject.transform.position, Quaternion.identity, systemObj.transform); // Creates object at origin
         spawnedObj.name = "Grabbable Celestial " + Time.time;
+        spawnedObj.GetComponentInChildren<TrailRendererOriginShiftController>().FindTrailRenderer(spawnedObj);
 
         Invoke("ReInitialise", Time.fixedDeltaTime); // Repositions spawnedObj in next fixedUpdate to player
     }
@@ -147,11 +148,20 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
     //}
 
     ///// <summary>
-    ///// Method run upon UI Button press used as an indirect UI interaction event.
+    ///// Boolean check to determine if rings are enabled so script can select this.
     ///// </summary>
-    //public void SpawnButtonPressed() // Tied to a button which runs this on activation
-    //{
-    //    isButtonPressed = true;
-    //}
+    public void RingsToggle(bool toggle) // Tied to a button which runs this on activation
+    {
+        if (toggle == true)
+        {
+            ringsEnabled = true;
+            grabbablePreFab = (GameObject)Resources.Load("PreFabs/CelestialRings PF", typeof(GameObject));
+        }
+        else if (toggle == false)
+        {
+            ringsEnabled = false;
+            grabbablePreFab = (GameObject)Resources.Load("PreFabs/Celestial PF", typeof(GameObject));
+        }
+    }
 
 }
