@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 722663830475607229}
   - component: {fileID: 722663830475607228}
   - component: {fileID: 722663830475607231}
+  - component: {fileID: 4459006861384384025}
   m_Layer: 5
   m_Name: PopUp Canvas
   m_TagString: Untagged
@@ -469,6 +470,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &4459006861384384025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722663830475607225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482f8e1c9a6a22140948c1c8c23a3a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: {fileID: 717538289054699791}
+  host: {fileID: 5926642219556546990}
+  mass: {fileID: 1748205736498880844}
+  radius: {fileID: 1856193803166806782}
 --- !u!1 &722663830881194117
 GameObject:
   m_ObjectHideFlags: 0

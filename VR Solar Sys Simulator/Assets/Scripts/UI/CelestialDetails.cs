@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 public class CelestialDetails : MonoBehaviour
 {
-    public TextMeshPro name;
-    public TextMeshPro host;
-    public TextMeshPro mass;
-    public TextMeshPro radius;
+    public TextMeshProUGUI name;
+    public TextMeshProUGUI host;
+    public TextMeshProUGUI mass;
+    public TextMeshProUGUI radius;
 
     GameObject systemObject;
 
