@@ -76,7 +76,7 @@ public class VRKeyPadScript : MonoBehaviour
 
     public void PressClose()
     {
-        activeInputField.onEndEdit.Invoke(activeInputField.text);
+        activeInputField.onSubmit.Invoke(activeInputField.text);
         activeInputField.DeactivateInputField();
         activeInputField = null;
         keypad.SetActive(false);
