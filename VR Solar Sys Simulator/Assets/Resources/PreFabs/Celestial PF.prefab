@@ -745,13 +745,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722663830881194117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0405ec0040738cf46a4137c5009babd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
-  trailRenderer: {fileID: 0}
+  TrailRenderers: []
 --- !u!1 &722663830932198128
 GameObject:
   m_ObjectHideFlags: 0

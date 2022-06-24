@@ -36,23 +36,43 @@ public class UpdateTimeSlider : MonoBehaviour
     {
         //the menu values correspon to different timescales per real-life second
         //the if statements are simple unit conversions from 1 earth day per second
+        //if (timeUnitMenu.value == 0)
+        //{
+        //    simulation.timeUnitMultiplier = 1f / (24 * 60 * 60);
+        //    Time.fixedDeltaTime = simulation.initialFixedTimeStep / 7f;
+        //}
+
+        //else if (timeUnitMenu.value == 1)
+        //{
+        //    simulation.timeUnitMultiplier = 1;
+        //    Time.fixedDeltaTime = simulation.initialFixedTimeStep;
+        //}
+
+        //else if (timeUnitMenu.value == 2)
+        //{
+        //    simulation.timeUnitMultiplier = 1 * 7;
+        //    Time.fixedDeltaTime = simulation.initialFixedTimeStep * 7f;
+        //}
+
+        // Below is the 'optimisation' made from the end of the old project
         if (timeUnitMenu.value == 0)
         {
+            Time.fixedDeltaTime = simulation.initialFixedTimeStep / 7;
             simulation.timeUnitMultiplier = 1f / (24 * 60 * 60);
-            Time.fixedDeltaTime = simulation.initialFixedTimeStep / 7f;
         }
 
         else if (timeUnitMenu.value == 1)
         {
-            simulation.timeUnitMultiplier = 1;
             Time.fixedDeltaTime = simulation.initialFixedTimeStep;
+            simulation.timeUnitMultiplier = 1;
         }
 
         else if (timeUnitMenu.value == 2)
         {
+            Time.fixedDeltaTime = simulation.initialFixedTimeStep * 7;
             simulation.timeUnitMultiplier = 1 * 7;
-            Time.fixedDeltaTime = simulation.initialFixedTimeStep * 7f;
         }
+
     }
 
     //gets called whenever the slider value changes

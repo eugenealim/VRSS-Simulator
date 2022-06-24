@@ -133,7 +133,7 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
     {
         spawnedObj = (GameObject)Instantiate(grabbablePreFab, gameObject.transform.position, Quaternion.identity, systemObj.transform); // Creates object at origin
         spawnedObj.name = "Grabbable Celestial " + Time.time;
-        spawnedObj.GetComponentInChildren<TrailRendererOriginShiftController>().FindTrailRenderer(spawnedObj);
+        //spawnedObj.GetComponentInChildren<TrailRendererOriginShiftController>().FindTrailRenderer(spawnedObj);
 
         Invoke("ReInitialise", Time.fixedDeltaTime); // Repositions spawnedObj in next fixedUpdate to player
     }
