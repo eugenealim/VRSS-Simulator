@@ -69,8 +69,9 @@ public class VRKeyPadScript : MonoBehaviour
 
     public void InputKeyPress(Button btn)
     {
-        activeInputField.text = (activeInputField.text + btn.name);
         activeInputField.Select();
+        activeInputField.ActivateInputField();
+        activeInputField.text = (activeInputField.text + btn.name);
     }
 
 
@@ -86,6 +87,8 @@ public class VRKeyPadScript : MonoBehaviour
     public void PressDelete()
     {
         //characters = activeInputField.text.Split();
+        activeInputField.Select();
+        activeInputField.ActivateInputField();
         activeInputField.text = activeInputField.text.Remove(activeInputField.text.Length - 1);
         if (activeInputField.text.Length == 0)
         {
