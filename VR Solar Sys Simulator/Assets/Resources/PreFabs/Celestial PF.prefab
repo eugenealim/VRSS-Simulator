@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 722663830932198129}
   - component: {fileID: 722663830932198134}
   - component: {fileID: 722663830932198135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProximityTriggerForPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

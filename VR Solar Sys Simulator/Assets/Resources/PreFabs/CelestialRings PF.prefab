@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 722663830932198129}
   - component: {fileID: 722663830932198134}
   - component: {fileID: 722663830932198135}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ProximityTriggerForPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92304cfae1274444385ecc9fa1d6b898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CelestialPopUp: {fileID: 0}
+  CelestialPopUp: {fileID: 211313870592396486}
   Player: {fileID: 0}
 --- !u!1 &2372759479250264677
 GameObject:
