@@ -89,9 +89,9 @@ public class UpdateTimeSlider : MonoBehaviour
 
             //the timescale of the simulation is adjusted to be multiplies by the slider value set by the user
             simulation.initialTimeScale = slider.GetComponent<Slider>().value;
-
             ///we also adjust the time between calculations so that higher timescales can be simulated without lag
             ///this has a slight effect on the accuracy of the simulation but no big deviations can be seen with the fastest timescale the UI offers
+            Time.fixedDeltaTime = simulation.initialFixedTimeStep * slider.GetComponent<Slider>().value;
             //Time.fixedDeltaTime = simulation.initialFixedTimeStep * simulation.initialTimeScale * simulation.timeUnitMultiplier;
 
         }
