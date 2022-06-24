@@ -19,7 +19,8 @@ public class VRCamSwitch : MonoBehaviour
     public Dropdown celestialMenu;
     SimulationSettings simSettings;
     VRCelestialEditor VRCelestialEditor;
-
+    public GameObject UI;
+    VRKeyPadScript keypad;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,8 @@ public class VRCamSwitch : MonoBehaviour
         currentCamera = HMDCamera;
         HMDCamera.SetActive(true);
         focusCamera.SetActive(true);
+
+        keypad = UI.GetComponent<VRKeyPadScript>();
 
     }
 
@@ -83,17 +86,17 @@ public class VRCamSwitch : MonoBehaviour
 
         focusCamera.transform.position = objectPosition + offset;
 
-        if (VRCelestialEditor.massInput.IsActive() == false)
+        if (keypad.activeInputField != keypad.mass)
         {
             VRCelestialEditor.massInput.text = simSettings.celestials[celNumber].GetComponent<Rigidbody>().mass.ToString();
         }
 
-        if (VRCelestialEditor.velocityInput.IsActive() == false)
+        if (keypad.activeInputField != keypad.velocity)
         {
             VRCelestialEditor.velocityInput.text = simSettings.celestials[celNumber].GetComponent<Rigidbody>().velocity.magnitude.ToString();
         }
 
-        if (VRCelestialEditor.radiusInput.IsActive() == false)
+        if (keypad.activeInputField != keypad.radius)
         {
             VRCelestialEditor.radiusInput.text = (simSettings.celestials[celNumber].transform.GetChild(0).GetComponent<Transform>().localScale.x).ToString();
         }
