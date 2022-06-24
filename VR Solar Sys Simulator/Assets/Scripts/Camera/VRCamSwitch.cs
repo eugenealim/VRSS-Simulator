@@ -83,17 +83,17 @@ public class VRCamSwitch : MonoBehaviour
 
         focusCamera.transform.position = objectPosition + offset;
 
-        if (VRCelestialEditor.massInput.isFocused == false)
+        if (VRCelestialEditor.massInput.IsActive() == false)
         {
             VRCelestialEditor.massInput.text = simSettings.celestials[celNumber].GetComponent<Rigidbody>().mass.ToString();
         }
 
-        if (VRCelestialEditor.velocityInput.isFocused == false)
+        if (VRCelestialEditor.velocityInput.IsActive() == false)
         {
             VRCelestialEditor.velocityInput.text = simSettings.celestials[celNumber].GetComponent<Rigidbody>().velocity.magnitude.ToString();
         }
 
-        if (VRCelestialEditor.radiusInput.isFocused == false)
+        if (VRCelestialEditor.radiusInput.IsActive() == false)
         {
             VRCelestialEditor.radiusInput.text = (simSettings.celestials[celNumber].transform.GetChild(0).GetComponent<Transform>().localScale.x).ToString();
         }
