@@ -16,7 +16,7 @@ public class ShowPopUp : MonoBehaviour // Follows this YouTube tutorials: https:
         {
             Debug.Log("Player entered a Celestial trigger zone");
             // Show Canvas
-            CelestialPopUp.enabled = true;
+            CelestialPopUp.gameObject.SetActive(true);
             Player = ObjectEnteringTriggerZone.gameObject;
         }
     }
@@ -27,7 +27,7 @@ public class ShowPopUp : MonoBehaviour // Follows this YouTube tutorials: https:
         {
             Debug.Log("Player exited a Celestial trigger zone");
             // Hide Canvas
-            CelestialPopUp.enabled = false;
+            CelestialPopUp.gameObject.SetActive(false);
             Player = null;
         }
     }

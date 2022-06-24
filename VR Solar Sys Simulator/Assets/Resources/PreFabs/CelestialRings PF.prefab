@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
-  TrailRenderers: []
+  trailsList: []
 --- !u!1 &722663830932198128
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 722663830932198129}
   - component: {fileID: 722663830932198134}
   - component: {fileID: 722663830932198135}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ProximityTriggerForPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -62,11 +62,11 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
         //    Spawn();
         //}
 
-        if (celestialArrayCheck.Length != simSettings.celestials.Length)
-        {
-            celestialArrayCheck = simSettings.celestials;
-            PopulateDropdown(VRCelSelDropDown, celestialArrayCheck);
-        }
+        //if (celestialArrayCheck.Length != simSettings.celestials.Length)
+        //{
+        //    celestialArrayCheck = simSettings.celestials;
+        //    PopulateDropdown(VRCelSelDropDown, celestialArrayCheck);
+        //}
     }
 
     /// <summary>
@@ -83,6 +83,14 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
         dropdownMenu.ClearOptions();
         dropdownMenu.AddOptions(options);
         Debug.Log("Updated Dropdown Menu");
+    }
+
+    private void AddSpawnedObjectToDropdown(Dropdown dropdownMenu, GameObject spawnObj)
+    {
+        List<string> objectList = new List<string>();
+        objectList.Clear();
+        objectList.Add(spawnObj.name);
+        dropdownMenu.AddOptions(objectList);
     }
 
     /// <summary>
@@ -126,7 +134,7 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
     public void RefreshCelestials()
     {
         systemObj.GetComponent<SimulationSettings>().celestials = GameObject.FindGameObjectsWithTag("Celestial");
-        PopulateDropdown(VRCelSelDropDown, celestialArrayCheck);
+        AddSpawnedObjectToDropdown(VRCelSelDropDown, spawnedObj);
     }
 
     public void UISpawnPress()
