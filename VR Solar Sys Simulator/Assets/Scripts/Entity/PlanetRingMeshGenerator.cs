@@ -28,14 +28,14 @@ public class PlanetRingMeshGenerator : MonoBehaviour // Taken from video tutoria
         BuildRingMesh();
     }
 
-    void OnValidate()
-    {
-        if (ring == null || ringMesh == null)
-        {
-            SetUpRing();
-        }
-        BuildRingMesh();
-    }
+    //void OnValidate()
+    //{
+    //    if (ring == null || ringMesh == null)
+    //    {
+    //        SetUpRing();
+    //    }
+    //    BuildRingMesh();
+    //}
 
     void SetUpRing()
     {
@@ -60,11 +60,7 @@ public class PlanetRingMeshGenerator : MonoBehaviour // Taken from video tutoria
             ringMR = ring.GetComponent<MeshRenderer>();
         }
         ringMesh = new Mesh();
-        //ringMF.sharedMesh = ringMesh;
-        ringMF.mesh = ringMesh;
-
-
-
+        ringMF.sharedMesh = ringMesh;
     }
 
     void BuildRingMesh()

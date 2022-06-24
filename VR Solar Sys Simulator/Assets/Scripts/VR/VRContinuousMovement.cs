@@ -25,7 +25,7 @@ public class VRContinuousMovement : MonoBehaviour
     private float rightTriggerValue;
 
     private XROrigin rig;
-    private float additionalHeight = 0.15f;
+    //private float additionalHeight = 0.15f;
 
     private CharacterController character;
 

@@ -16,9 +16,9 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
     [Tooltip("How long a delay there is in seconds before being able to instantiate a new object.")]
     public float spawnCooldown = 3f;
 
-    private float cooldownResetTime = 0f; // Used as part of the Cooldown system
+    //private float cooldownResetTime = 0f; // Used as part of the Cooldown system
 
-    private bool isButtonPressed = false; // Triggered by a UI Button press
+    //private bool isButtonPressed = false; // Triggered by a UI Button press
 
     VRCelestialSelector VRCelSel;
     SimulationSettings simSettings;

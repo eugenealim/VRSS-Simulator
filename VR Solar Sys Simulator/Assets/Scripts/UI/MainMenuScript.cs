@@ -13,6 +13,16 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene("Dev Scene");
     }
 
+    public void EnterEmptyScene()
+    {
+        return;
+    }
+
+    public void EnterMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     // Update is called once per frame
     public void ExitGame()
     {

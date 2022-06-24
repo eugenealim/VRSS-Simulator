@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemObj: {fileID: 0}
-  hostObj: {fileID: 0}
+  hostObj: {fileID: 722663829989359628}
   volumetricMeanRadius: 1
   mass: 1
   dayPeriod: 1
@@ -217,12 +217,12 @@ MonoBehaviour:
   periapsisGlobal: 0
   apoapsisGlobal: 0
   semiMajor: 0
-  eccentricity: 0
+  eccentricity: NaN
   orbitalPeriod: 0
-  angularMomentum: {x: 0, y: 0, z: 0}
+  angularMomentum: {x: 0, y: 1, z: 0}
   dotProductOfVelAndRadial: 0
   dotProductOfAngMomAndVel: 0
-  initDirection: {x: 0, y: 0, z: 0}
+  initDirection: {x: 0, y: 0, z: 1}
   posVectorResult: {x: 0, y: 0, z: 0}
 --- !u!114 &824711683580816549
 MonoBehaviour:
@@ -564,7 +564,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.05696106
         inSlope: 0
         outSlope: 0
         tangentMode: 0
