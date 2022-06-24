@@ -9,6 +9,7 @@ public class CelestialDetails : MonoBehaviour
     public TextMeshProUGUI host;
     public TextMeshProUGUI mass;
     public TextMeshProUGUI radius;
+    public TextMeshProUGUI velocity;
 
     GameObject systemObject;
 
@@ -21,14 +22,18 @@ public class CelestialDetails : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.GetComponent<Canvas>().enabled)
+        {
+            UpdateDetails();
+        }
     }
 
     public void UpdateDetails()
     {
-        name.text = gameObject.GetComponentInParent<Transform>().gameObject.name;
+        name.text = gameObject.GetComponentInParent<CelestialProperties>().gameObject.name;
         host.text = gameObject.GetComponentInParent<CelestialProperties>().hostObj.name;
         mass.text = gameObject.GetComponentInParent<Rigidbody>().mass.ToString() + " Earth masses";
         radius.text = (gameObject.GetComponentInParent<CelestialProperties>().volumetricMeanRadius/(systemObject.GetComponent<SimulationSettings>().lengthUnit)).ToString() + "AU";
+        velocity.text = gameObject.GetComponentInParent<Rigidbody>().velocity.ToString() + "";
     }
 }
