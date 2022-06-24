@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 public class UIArrowButtons : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class UIArrowButtons : MonoBehaviour
     public GameObject Player;
     public GameObject RightRay;
     public GameObject LeftRay;
+
+    public float forceValue = 1f;
+    public Text forceText;
+    public bool forceRayEnabled = false;
 
     private void Start()
     {
@@ -60,5 +65,31 @@ public class UIArrowButtons : MonoBehaviour
         LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 0.5f;
         LeftRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 0.5f;
         LeftRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 0.5f;
+    }
+
+    public void ForceRayToggle(bool toggle)
+    {
+        if (toggle == true)
+        {
+            forceRayEnabled = true;
+        }
+        else if (toggle == false)
+        {
+            forceRayEnabled = false;
+        }
+    }
+
+    public void IncreaseForceRay()
+    {
+        forceValue *= 2f;
+        Debug.Log("Increased force to " + forceValue);
+        forceText.text = forceValue.ToString();
+    }
+
+    public void DecreaseForceRay()
+    {
+        forceValue *= 0.5f;
+        Debug.Log("Decreased force to " + forceValue);
+        forceText.text = forceValue.ToString();
     }
 }

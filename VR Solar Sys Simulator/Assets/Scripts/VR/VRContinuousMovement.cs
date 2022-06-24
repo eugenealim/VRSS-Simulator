@@ -8,12 +8,21 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class VRContinuousMovement : MonoBehaviour
 // Based off Valem's VR Tutorial Playlist, Video 4: https://www.youtube.com/watch?v=5NRTT8Tbmoc&list=PLrk7hDwk64-a_gf7mBBduQb3PEBYnG4fU&index=5 and this thread: https://answers.unity.com/questions/1700053/how-to-walk-in-the-direction-the-player-is-looking.html
 {
+    UIArrowButtons UIToolScript;
+    
     public XRNode inputSourceLeft;
     public XRNode inputSourceRight;
     public float speed = 2f;
     public GameObject head;
     public GameObject leftHand;
     public GameObject rightHand;
+    public GameObject leftRay;
+    public GameObject rightRay;
+    public bool leftRayHoverEnter;
+    public bool rightRayHoverEnter;
+    public bool leftRayHoverExit;
+    public bool rightRayHoverExit;
+    
     public Transform cameraTransform;
     public LayerMask groundLayer;
 
@@ -73,7 +82,37 @@ public class VRContinuousMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (UIToolScript.forceRayEnabled == true && (rightRayHoverEnter||leftRayHoverEnter) )
+        {
+            return;
+        }
     }
 
+    public void rightRayHover(bool hoverEvent)
+    {
+        if (hoverEvent == true)
+        {
+            rightRayHoverEnter = true;
+            rightRayHoverExit = false;
+        }
+        if (hoverEvent == false)
+        {
+            rightRayHoverEnter = false;
+            rightRayHoverExit = true;
+        }
+    }
+
+    public void leftRayHover(bool hoverEvent)
+    {
+        if (hoverEvent == true)
+        {
+            leftRayHoverEnter = true;
+            leftRayHoverExit = false;
+        }
+        if (hoverEvent == false)
+        {
+            leftRayHoverEnter = false;
+            leftRayHoverExit = true;
+        }
+    }
 }
