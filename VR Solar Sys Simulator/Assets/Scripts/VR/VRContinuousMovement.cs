@@ -82,10 +82,10 @@ public class VRContinuousMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (UIToolScript.forceRayEnabled == true && (rightRayHoverEnter||leftRayHoverEnter) )
-        {
-            return;
-        }
+        //if (UIToolScript.forceRayEnabled == true && (rightRayHoverEnter||leftRayHoverEnter) )
+        //{
+        //    return;
+        //}
     }
 
     public void rightRayHover(bool hoverEvent)

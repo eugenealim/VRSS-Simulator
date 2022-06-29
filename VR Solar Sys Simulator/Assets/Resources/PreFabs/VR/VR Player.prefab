@@ -779,6 +779,12 @@ MonoBehaviour:
   head: {fileID: 0}
   leftHand: {fileID: 0}
   rightHand: {fileID: 0}
+  leftRay: {fileID: 0}
+  rightRay: {fileID: 0}
+  leftRayHoverEnter: 0
+  rightRayHoverEnter: 0
+  leftRayHoverExit: 0
+  rightRayHoverExit: 0
   cameraTransform: {fileID: 0}
   groundLayer:
     serializedVersion: 2

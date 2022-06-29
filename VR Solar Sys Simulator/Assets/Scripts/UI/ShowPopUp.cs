@@ -37,7 +37,9 @@ public class ShowPopUp : MonoBehaviour // Follows this YouTube tutorials: https:
         // Rotate PopUp Canvas if Player near
         if (Player != null)
         {
-            CelestialPopUp.transform.rotation = Quaternion.LookRotation(CelestialPopUp.transform.position - Player.transform.position, Vector3.up); //https://www.youtube.com/watch?v=NLi0gazYD90
+            //CelestialPopUp.transform.rotation = Quaternion.LookRotation(CelestialPopUp.transform.position - Player.transform.position, Vector3.up); //https://www.youtube.com/watch?v=NLi0gazYD90
+            CelestialPopUp.transform.LookAt(Player.transform);
+
             //CelestialPopUp.transform.position = Vector3.RotateTowards(CelestialPopUp.transform.position, Player.transform.position, 360f, 0f);
 
         }

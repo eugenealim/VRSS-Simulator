@@ -4,43 +4,55 @@ using UnityEngine;
 
 public class Starlight : MonoBehaviour
 {
-    public Light directionalLightSource;
+    public GameObject lightSource;
     public GameObject Star;
     private GameObject tempStar;
-    public GameObject Player;
+    public GameObject planet;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        planet = gameObject;
+    }
+
+    void OnValidate()
+    {
+        planet = gameObject;
+        //lightSource = planet.GetComponentInChildren<Light>().gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        directionalLightSource.transform.LookAt(Player.transform, Vector3.up);
 
-        if (Star == null)
+        if (lightSource == null || Star == null)
         {
-            Star = gameObject;
-            //if (gameObject.GetComponent<SimulationSettings>().celestials.Length > 0)
-            //{
-            //    tempStar = gameObject.GetComponent<SimulationSettings>().celestials[0];
-            //}
-            //else
-            //{
-            //    tempStar = null;
-            //}
-            
-            
-            //if (tempStar.name == "Sun" || tempStar.name == "Star")
-            //{
-            //    Star = tempStar;
-            //}
-            //else
-            //{
-            //    Star = gameObject;
-            //}
+            lightSource.SetActive(false);
         }
+        else // Must be a light source
+        {
+            PositionSpotLight(lightSource, planet);
+        }
+    }
+
+    private void PositionSpotLight(GameObject SpotLight, GameObject Planet)
+    {
+        Vector3 distanceNormalised = (Star.transform.position - Planet.transform.position).normalized;
+        lightSource.transform.position = planet.transform.position + 1.5f*planet.transform.lossyScale.x*distanceNormalised;
+        
+        
+        lightSource.transform.LookAt(planet.transform);
+        //lightSource.transform.TransformDirection
+
+
+        //lightSource.transform.LookAt(planet.transform);
+
+        //Vector3 objectPosition = planet.transform.position;
+        //Vector3 objectScale = planet.transform.lossyScale;
+        //Vector3 offset = objectScale * planet.transform.localScale.x * 2f; // Multiplying by localScale.x allows camera to scale outwards when radius is changed via UI
+
+
+        //lightSource.transform.position = objectPosition + offset;
+
     }
 }
