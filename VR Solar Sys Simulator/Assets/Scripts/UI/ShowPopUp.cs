@@ -3,45 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 // Get access to Unity UI System
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class ShowPopUp : MonoBehaviour // Follows this YouTube tutorials: https://www.youtube.com/watch?v=DfKiazs72DA
 {
     // Canvas that displays PopUp info
-    public Canvas CelestialPopUp;
+    public GameObject CelestialPopUp;
     public GameObject Player;
+    public Camera PlayerCam;
+    public GameObject CelestialObject;
 
-    private void OnTriggerEnter(Collider ObjectEnteringTriggerZone)
-    {
-        if (ObjectEnteringTriggerZone.CompareTag("Player"))
-        {
-            Debug.Log("Player entered a Celestial trigger zone");
-            // Show Canvas
-            CelestialPopUp.gameObject.SetActive(true);
-            Player = ObjectEnteringTriggerZone.gameObject;
-        }
-    }
+    public Collider[] colliderObjects;
+    public Collider nearestCollider = null;
+    public float sqrDistanceToCenter;
+    public float minSqrDistance = Mathf.Infinity;
 
-    private void OnTriggerExit(Collider ObjectLeavingTriggerZone)
-    {
-        if (ObjectLeavingTriggerZone.CompareTag("Player"))
-        {
-            Debug.Log("Player exited a Celestial trigger zone");
-            // Hide Canvas
-            CelestialPopUp.gameObject.SetActive(false);
-            Player = null;
-        }
-    }
+    //private void OnTriggerEnter(Collider ObjectEnteringTriggerZone)
+    //{
+    //    CelestialObject = ObjectEnteringTriggerZone.GetComponentInParent<CelestialProperties>().gameObject;
+    //    if (CelestialObject.CompareTag("Celestial"))
+    //    {
+    //        Debug.Log("Celestial entered Player trigger zone");
+    //        // Show Canvas
+    //        CelestialPopUp.gameObject.SetActive(true);
+    //        //CelestialObject = CelestialObject;
+    //    }
+
+    //}
+
+    //private void OnTriggerExit(Collider ObjectLeavingTriggerZone)
+    //{
+    //    CelestialObject = ObjectLeavingTriggerZone.GetComponentInParent<CelestialProperties>().gameObject;
+    //    if (CelestialObject.CompareTag("Celestial"))
+    //    {
+    //        Debug.Log("Celestial exited Player trigger zone");
+    //        // Hide Canvas
+    //        CelestialPopUp.gameObject.SetActive(false);
+    //        CelestialObject = null;
+    //    }
+    //}
 
     private void Update()
     {
-        // Rotate PopUp Canvas if Player near
-        if (Player != null)
+        Vector3 center = transform.position;
+        float radius = gameObject.transform.localScale.x/2f;
+
+        minSqrDistance = Mathf.Infinity;
+
+
+        Collider[] colliderObjects = Physics.OverlapSphere(center, radius, 1<<7);
+
+        foreach (Collider collider in colliderObjects)
         {
-            //CelestialPopUp.transform.rotation = Quaternion.LookRotation(CelestialPopUp.transform.position - Player.transform.position, Vector3.up); //https://www.youtube.com/watch?v=NLi0gazYD90
-            CelestialPopUp.transform.LookAt(Player.transform);
+            sqrDistanceToCenter = (center - collider.transform.position).sqrMagnitude;
 
-            //CelestialPopUp.transform.position = Vector3.RotateTowards(CelestialPopUp.transform.position, Player.transform.position, 360f, 0f);
-
+            if (sqrDistanceToCenter < minSqrDistance)
+            {
+                CelestialPopUp.SetActive(true);
+                nearestCollider = collider;
+                minSqrDistance = sqrDistanceToCenter;
+                CelestialObject = collider.GetComponentInParent<CelestialProperties>().gameObject;
+            }
+            else
+            {
+                CelestialObject = null;
+                CelestialPopUp.SetActive(false);
+            }
         }
     }
 

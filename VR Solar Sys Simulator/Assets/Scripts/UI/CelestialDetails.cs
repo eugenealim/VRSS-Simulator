@@ -11,12 +11,15 @@ public class CelestialDetails : MonoBehaviour
     public TextMeshProUGUI radius;
     public TextMeshProUGUI velocity;
 
+    public GameObject Tracker;
+    public GameObject Celestial;
+
     GameObject systemObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        systemObject = gameObject.GetComponentInParent<CelestialProperties>().systemObj;
+        systemObject = Celestial.GetComponent<CelestialProperties>().systemObj;
     }
 
     // Update is called once per frame
@@ -24,16 +27,17 @@ public class CelestialDetails : MonoBehaviour
     {
         if (gameObject.GetComponent<Canvas>().enabled)
         {
+            Celestial = Tracker.GetComponent<ShowPopUp>().CelestialObject;
             UpdateDetails();
         }
     }
 
     public void UpdateDetails()
     {
-        name.text = gameObject.GetComponentInParent<CelestialProperties>().gameObject.name;
-        host.text = gameObject.GetComponentInParent<CelestialProperties>().hostObj.name;
-        mass.text = gameObject.GetComponentInParent<Rigidbody>().mass.ToString() + " Earth masses";
-        radius.text = (gameObject.GetComponentInParent<CelestialProperties>().volumetricMeanRadius/(systemObject.GetComponent<SimulationSettings>().lengthUnit)).ToString() + "AU";
-        velocity.text = gameObject.GetComponentInParent<Rigidbody>().velocity.ToString() + "";
+        name.text = Celestial.GetComponent<CelestialProperties>().gameObject.name;
+        host.text = Celestial.GetComponent<CelestialProperties>().hostObj.name;
+        mass.text = Celestial.GetComponent<Rigidbody>().mass.ToString() + " Earth masses";
+        radius.text = (Celestial.GetComponent<CelestialProperties>().volumetricMeanRadius/(systemObject.GetComponent<SimulationSettings>().lengthUnit)).ToString() + "AU";
+        velocity.text = Celestial.GetComponent<Rigidbody>().velocity.ToString() + "";
     }
 }
