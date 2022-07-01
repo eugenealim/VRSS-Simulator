@@ -6,13 +6,14 @@ public class Starlight : MonoBehaviour
 {
     public GameObject lightSource;
     public GameObject Star;
-    private GameObject tempStar;
+    public GameObject Player;
     public GameObject planet;
     
     // Start is called before the first frame update
     void Start()
     {
         planet = gameObject;
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void OnValidate()
@@ -27,7 +28,7 @@ public class Starlight : MonoBehaviour
 
         if (lightSource != null && Star == null)
         {
-            lightSource.SetActive(false);
+            Star = Player;
         }
         else if (Star != null) // Must be a light source
         {
@@ -42,17 +43,6 @@ public class Starlight : MonoBehaviour
         
         
         lightSource.transform.LookAt(planet.transform);
-        //lightSource.transform.TransformDirection
-
-
-        //lightSource.transform.LookAt(planet.transform);
-
-        //Vector3 objectPosition = planet.transform.position;
-        //Vector3 objectScale = planet.transform.lossyScale;
-        //Vector3 offset = objectScale * planet.transform.localScale.x * 2f; // Multiplying by localScale.x allows camera to scale outwards when radius is changed via UI
-
-
-        //lightSource.transform.position = objectPosition + offset;
 
     }
 }
