@@ -140,7 +140,15 @@ public class CelestialSpawnButton : MonoBehaviour // Modelled off this video: ht
     public void UISpawnPress()
     {
         spawnedObj = (GameObject)Instantiate(grabbablePreFab, gameObject.transform.position, Quaternion.identity, systemObj.transform); // Creates object at origin
-        spawnedObj.name = "Cel " + Time.time;
+        if (!ringsEnabled)
+        {
+            spawnedObj.name = "CPF " + Time.time; // Stands for Celestial PreFab [Time]
+        }
+        else if (ringsEnabled)
+        {
+            spawnedObj.name = "CRPF " + Time.time; // Stands for Celestial Rings PreFab [Time]
+        }
+        
         //spawnedObj.GetComponentInChildren<TrailRendererOriginShiftController>().FindTrailRenderer(spawnedObj);
 
         Invoke("ReInitialise", Time.fixedDeltaTime); // Repositions spawnedObj in next fixedUpdate to player

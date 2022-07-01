@@ -14,12 +14,12 @@ public class CelestialDetails : MonoBehaviour
     public GameObject Tracker;
     public GameObject Celestial;
 
-    GameObject systemObject;
+    public GameObject systemObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        systemObject = Celestial.GetComponent<CelestialProperties>().systemObj;
+        //systemObject = Celestial.GetComponent<CelestialProperties>().systemObj;
     }
 
     // Update is called once per frame
@@ -28,7 +28,11 @@ public class CelestialDetails : MonoBehaviour
         if (gameObject.GetComponent<Canvas>().enabled)
         {
             Celestial = Tracker.GetComponent<ShowPopUp>().CelestialObject;
-            UpdateDetails();
+            if (Celestial != null)
+            {
+                UpdateDetails();
+            }
+            
         }
     }
 

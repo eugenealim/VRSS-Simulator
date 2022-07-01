@@ -18,6 +18,9 @@ public class ShowPopUp : MonoBehaviour // Follows this YouTube tutorials: https:
     public float sqrDistanceToCenter;
     public float minSqrDistance = Mathf.Infinity;
 
+    public Vector3 center;
+    public float radius;
+
     //private void OnTriggerEnter(Collider ObjectEnteringTriggerZone)
     //{
     //    CelestialObject = ObjectEnteringTriggerZone.GetComponentInParent<CelestialProperties>().gameObject;
@@ -45,29 +48,28 @@ public class ShowPopUp : MonoBehaviour // Follows this YouTube tutorials: https:
 
     private void Update()
     {
-        Vector3 center = transform.position;
-        float radius = gameObject.transform.localScale.x/2f;
+        center = transform.position;
+        radius = gameObject.transform.lossyScale.x;
 
         minSqrDistance = Mathf.Infinity;
 
+        colliderObjects = Physics.OverlapSphere(center, radius, 1 << 7);
 
-        Collider[] colliderObjects = Physics.OverlapSphere(center, radius, 1<<7);
-
-        foreach (Collider collider in colliderObjects)
+        for (int i = 0; i < colliderObjects.Length; i++)
         {
-            sqrDistanceToCenter = (center - collider.transform.position).sqrMagnitude;
+            sqrDistanceToCenter = (center - colliderObjects[i].transform.position).sqrMagnitude;
 
             if (sqrDistanceToCenter < minSqrDistance)
             {
-                CelestialPopUp.SetActive(true);
-                nearestCollider = collider;
+                //CelestialPopUp.SetActive(true);
+                nearestCollider = colliderObjects[i];
                 minSqrDistance = sqrDistanceToCenter;
-                CelestialObject = collider.GetComponentInParent<CelestialProperties>().gameObject;
+                CelestialObject = colliderObjects[i].GetComponentInParent<CelestialProperties>().gameObject;
             }
             else
             {
                 CelestialObject = null;
-                CelestialPopUp.SetActive(false);
+                //CelestialPopUp.SetActive(false);
             }
         }
     }

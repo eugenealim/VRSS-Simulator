@@ -25,11 +25,11 @@ public class Starlight : MonoBehaviour
     void Update()
     {
 
-        if (lightSource == null || Star == null)
+        if (lightSource != null && Star == null)
         {
             lightSource.SetActive(false);
         }
-        else // Must be a light source
+        else if (Star != null) // Must be a light source
         {
             PositionSpotLight(lightSource, planet);
         }

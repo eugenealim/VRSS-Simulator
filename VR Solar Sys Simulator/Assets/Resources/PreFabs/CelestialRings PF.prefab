@@ -37,7 +37,6 @@ Transform:
   - {fileID: 722663830148216277}
   - {fileID: 176953750504422328}
   - {fileID: 722663830881194138}
-  - {fileID: 722663830932198129}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -259,7 +258,7 @@ GameObject:
   - component: {fileID: 722663830148216299}
   - component: {fileID: 722663830148216298}
   - component: {fileID: 5778624728571102305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,8 +339,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722663830148216276}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -507,51 +506,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OriginShiftEventChannel: {fileID: 11400000, guid: a697f298d04f48342aabc7191ce8dbf6, type: 2}
   trailsList: []
---- !u!1 &722663830932198128
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 722663830932198129}
-  - component: {fileID: 722663830932198134}
-  m_Layer: 7
-  m_Name: ProximityTriggerForPopUp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &722663830932198129
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722663830932198128}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 722663829989359619}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &722663830932198134
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722663830932198128}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8046131934303937443
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +611,7 @@ GameObject:
   - component: {fileID: 8648267415101875552}
   - component: {fileID: 4177391158066653016}
   - component: {fileID: 9095826216762013634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
