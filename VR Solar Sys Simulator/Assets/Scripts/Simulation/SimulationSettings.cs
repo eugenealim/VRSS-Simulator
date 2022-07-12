@@ -30,13 +30,11 @@ public class SimulationSettings : MonoBehaviour
     /// G is recalculated to be in the new unity dimensions
     /// </summary>
     public float gravitationalConstant;
-    public float timeUnit = 1f;
-    public float massUnit = 1f;
-    public float lengthUnit = 100f;
+    public float timeUnit;
+    public float massUnit;
+    public float lengthUnit;
 
     public GameObject[] celestials; // [Sun, Merc, Ven, Earth, Moon, Mars, Jup, Sat, Uran, Nep, Plut] are the main celestials
-
-    public GameObject[] particleSystems; // Used to easily disable particles for faster timescales
 
     // Start is called before the first frame update
     public void Start()
@@ -51,11 +49,8 @@ public class SimulationSettings : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene(); // As this script is used for multiple scenes during development, this is used later to reload the current active scene
         gravitationalConstant = 4f * Mathf.Pow(Mathf.PI / (365.26f), 2f) * Mathf.Pow(lengthUnit, 3f) * Mathf.Pow(massUnit * celestials[0].GetComponent<Rigidbody>().mass, -1f) * Mathf.Pow(timeUnit, -2f); // Calculates the G constant based off K3L using the custom Unity scale/units
-        //celestials = GameObject.FindGameObjectsWithTag("Celestial"); // Collates all GameObjects w/ "Celestial" tag into an array
-        //particleSystems = GameObject.FindGameObjectsWithTag("ParticleSystem"); // Collates any GameObjects w/ "ParticleSystem" tag like above. This is used specifically for particle systems or anything that should be treated as one
-
-        //restartSimulation(); //temporary workaround to make the celestial dropdown work since it only works after restarting the simulation
     }
+
     private void OnValidate()
     {
         gravitationalConstant = 4f * Mathf.Pow(Mathf.PI / (365.26f), 2f) * Mathf.Pow(lengthUnit, 3f) * Mathf.Pow(massUnit * celestials[0].GetComponent<Rigidbody>().mass, -1f) * Mathf.Pow(timeUnit, -2f); // Calculates the G constant based off K3L using the custom Unity scale/units
@@ -75,21 +70,6 @@ public class SimulationSettings : MonoBehaviour
     void FixedUpdate()
     {
         physTimeStart += Time.fixedDeltaTime; // Used for an in-editor runtime counter for physics clock
-        if ((initialTimeScale >= 2 && gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value == 1) || gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value == 2) // SetActive=false for asteroid belt (and other particle systems) in faster timescales
-        {
-            foreach (GameObject partSys in particleSystems)
-            {
-                partSys.SetActive(false);
-            }
-
-        }
-        else
-        {
-            foreach (GameObject partSys in particleSystems)
-            {
-                partSys.SetActive(true);
-            }
-        }
     }
 
 

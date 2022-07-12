@@ -51,6 +51,11 @@ public class VRCelestialSelector : MonoBehaviour
         PopulateDropdown(dropdownMenu, gameObject.GetComponent<SimulationSettings>().celestials);
     }
 
+    /// <summary>
+    /// Used to populate the Celestial Dropdown Selector using the celestials array.
+    /// </summary>
+    /// <param name="dropdownMenu"></param>
+    /// <param name="optionsArray"></param>
     private void PopulateDropdown(Dropdown dropdownMenu, GameObject[] optionsArray)
     {
         List<string> options = new List<string>();
@@ -73,6 +78,10 @@ public class VRCelestialSelector : MonoBehaviour
         VRCamSwitch.celNumber = dropdown.GetComponent<Dropdown>().value;
     }
 
+    /// <summary>
+    /// Dynamic boolean used to enable 'targeting' mode via UI toggle element.
+    /// </summary>
+    /// <param name="toggle"></param>
     public void TargetingEngagedToggleButton(bool toggle)
     {
         if (toggle == true)
@@ -85,11 +94,18 @@ public class VRCelestialSelector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Forces Player to look at the targeted object whilst oriented upwards globally and locking player rotation.
+    /// </summary>
     public void TargetingEngaged()
     {
         player.transform.LookAt(VRCamSwitch.objectPosition, Vector3.up); // Instantly looks at target celestial
     }
 
+    /// <summary>
+    /// Dynamic boolean used to enable 'follow' mode via UI toggle element.
+    /// </summary>
+    /// <param name="toggle"></param>
     public void FollowEngagedToggleButton(bool toggle)
     {
         if (toggle == true)
@@ -102,13 +118,18 @@ public class VRCelestialSelector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Instantaneously transforms player to an offset position to the targeted object, but allows free player rotation
+    /// </summary>
     public void FollowEngaged()
     {
-        //player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + 2f * VRCamSwitch.offset, simulationSettings.celestials[VRCamSwitch.celNumber].GetComponent<Rigidbody>().velocity.magnitude * Time.deltaTime); // Slowly moves player towards targeted celestial
-
         player.transform.position = VRCamSwitch.objectPosition + 2f*VRCamSwitch.offset;
     }
 
+    /// <summary>
+    /// Dynamic boolean used to enable 'autopilot' mode via UI toggle element.
+    /// </summary>
+    /// <param name="toggle"></param>
     public void AutoPilotToggleButton(bool toggle)
     {
         if (toggle == true)
@@ -121,6 +142,9 @@ public class VRCelestialSelector : MonoBehaviour
         }
     }    
 
+    /// <summary>
+    /// Forces player to look at targeted object and gradually moves them towards the object based off the player's speed. This mode also allows player to move freely about the object's position.
+    /// </summary>
     public void AutoPilotEngaged()
     {
         player.transform.position = Vector3.MoveTowards(player.transform.position, VRCamSwitch.objectPosition + 2f*VRCamSwitch.offset, player.GetComponent<VRContinuousMovement>().speed * Time.fixedDeltaTime); // Slowly moves player towards targeted celestial

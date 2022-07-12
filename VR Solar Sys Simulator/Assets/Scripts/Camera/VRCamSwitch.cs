@@ -42,21 +42,6 @@ public class VRCamSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// Switches between celestial bodies using Ctrl + < or > keys
-        //if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand))
-        //{
-        //    if (Input.GetKeyDown(KeyCode.Comma) && celNumber > -1) // uses '<'
-        //    {
-        //        celNumber--;
-        //        celestialMenu.value = celNumber;
-        //    }
-        //    if (Input.GetKeyDown(KeyCode.Period) && celNumber < gameObject.GetComponent<SimulationSettings>().celestials.Length - 1) // uses '>'
-        //    {
-        //        celNumber++;
-        //        celestialMenu.value = celNumber;
-        //    }
-        //}
-
         if (gameObject.GetComponent<UpdateTimeSlider>().timeUnitMenu.value == 0 && gameObject.GetComponent<SimulationSettings>().celestials.Length > 0) // Speeds up update rate for focusCam in seconds/sec timeframe
         {
             UpdateFocusCamera();
@@ -74,6 +59,9 @@ public class VRCamSwitch : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Transforms secondary 'focus' camera to always follow the active celestial for the UI preview. This is also where the Celestial Editor Input Fields are always updated unless the text field is active.
+    /// </summary>
     public void UpdateFocusCamera()
     {
 

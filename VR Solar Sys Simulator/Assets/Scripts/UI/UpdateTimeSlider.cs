@@ -21,40 +21,28 @@ public class UpdateTimeSlider : MonoBehaviour
     
     //these 2 functions link the slider and the input field together
     //this way changing one will adjust the other one to keep them linked
+
+    /// <summary>
+    /// Uses slider value and updates the text for the Time Input Field.
+    /// </summary>
     public void updateTimeInput()
     {
         timeInput.GetComponent<InputField>().text = slider.GetComponent<Slider>().value.ToString();
     }
 
+    /// <summary>
+    /// Updates slider value from the Time Input Text Field.
+    /// </summary>
     public void updateSlider()
     {
         slider.GetComponent<Slider>().value = float.Parse(timeInput.GetComponent<InputField>().text);
     }
 
-    //called whenever a timeScaleUnit is changed
+    /// <summary>
+    /// Executed whenever the time unit dropdown is changed, updating the unit of the simulation timescale. By default this should be Earth Days per runtime second.
+    /// </summary>
     public void updateTimeUnit()
     {
-        //the menu values correspon to different timescales per real-life second
-        //the if statements are simple unit conversions from 1 earth day per second
-        //if (timeUnitMenu.value == 0)
-        //{
-        //    simulation.timeUnitMultiplier = 1f / (24 * 60 * 60);
-        //    Time.fixedDeltaTime = simulation.initialFixedTimeStep / 7f;
-        //}
-
-        //else if (timeUnitMenu.value == 1)
-        //{
-        //    simulation.timeUnitMultiplier = 1;
-        //    Time.fixedDeltaTime = simulation.initialFixedTimeStep;
-        //}
-
-        //else if (timeUnitMenu.value == 2)
-        //{
-        //    simulation.timeUnitMultiplier = 1 * 7;
-        //    Time.fixedDeltaTime = simulation.initialFixedTimeStep * 7f;
-        //}
-
-        // Below is the 'optimisation' made from the end of the old project
         if (timeUnitMenu.value == 0)
         {
             Time.fixedDeltaTime = simulation.initialFixedTimeStep / 7;
@@ -75,7 +63,9 @@ public class UpdateTimeSlider : MonoBehaviour
 
     }
 
-    //gets called whenever the slider value changes
+    /// <summary>
+    /// Executed whenever the timescale slider value is changed to update its text value and the fixed timestep.
+    /// </summary>
     public void updateTimescale()
     {
         if (slider.GetComponent<Slider>().value == 0)

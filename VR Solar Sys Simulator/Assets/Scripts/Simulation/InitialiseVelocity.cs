@@ -27,9 +27,9 @@ public class InitialiseVelocity : MonoBehaviour
         celestialList = gameObject.GetComponent<SimulationSettings>().celestials;
     }
 
-    ///// <summary>
-    ///// Calculates required velocity for anti-clockwise elliptical orbits
-    ///// </summary>
+    /// <summary>
+    ///// Calculates required velocity for anti-clockwise elliptical orbits.
+    /// </summary>
     private void InitialVelocity()
     {
         foreach (GameObject parentObj in celestialList) // Begin with the Sun, which we know is a 'parent'/'host'

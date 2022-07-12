@@ -58,6 +58,9 @@ public class VRCelestialEditor : MonoBehaviour
         VRCamSwitch.celNumber = 0;
     }
 
+    /// <summary>
+    /// Clears scene of all 'celestial' objects listed in the array and clears the Celestial Selector.
+    /// </summary>
     public void RemoveAllCelestials()
     {
         for (int i = 0; i < simSettings.celestials.Length; i++)
@@ -90,13 +93,12 @@ public class VRCelestialEditor : MonoBehaviour
     }
 
     /// <summary>
-    /// Method to change the renderer scale of a celestial. This does not change the scale of the entire celestial, only the object which makes it visible i.e. the "Sphere" child.
+    /// Method to change the local scale of a celestial. This now changes the scale of the entire celestial, and not only the object which makes it visible i.e. the "Sphere" child.
     /// </summary>
     public void ChangeRadius()
     {
-        // To avoid changing the children (the moons) of a celestial, we change the local scale of the sphere we set all x,y and z values of the local scale to the radius chosen by the user
         float newRadius = float.Parse(radiusInput.text);
-        simSettings.celestials[VRCamSwitch.celNumber].transform.GetChild(0).gameObject.transform.localScale = new Vector3(newRadius, newRadius, newRadius);
+        simSettings.celestials[VRCamSwitch.celNumber].transform.localScale = new Vector3(newRadius, newRadius, newRadius);
     }
 }
 

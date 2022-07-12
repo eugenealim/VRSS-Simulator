@@ -18,6 +18,26 @@ public class MainMenuScript : MonoBehaviour
         return;
     }
 
+    public void EnterSolarSys()
+    {
+        return;
+    }
+
+    public void EnterEarth()
+    {
+        return;
+    }
+
+    public void EnterJupiter()
+    {
+        return;
+    }
+
+    public void EnterSaturn()
+    {
+        return;
+    }
+
     public void EnterMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
