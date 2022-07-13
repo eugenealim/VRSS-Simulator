@@ -12,9 +12,10 @@ public class UIArrowButtons : MonoBehaviour
     public GameObject RightRay;
     public GameObject LeftRay;
 
+    public float playerScale;
+
     public float forceValue = 1f;
     public Text forceText;
-    public bool forceRayEnabled = false;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class UIArrowButtons : MonoBehaviour
 
     public void IncreaseSize()
     {
+        playerScale *= 2f;
         Player.transform.localScale *= 2f;
         Debug.Log("Increased local scale to " + Player.transform.localScale);
         // Must also increase boundary for Floating Origin
@@ -53,6 +55,7 @@ public class UIArrowButtons : MonoBehaviour
 
     public void DecreaseSize()
     {
+        playerScale *= 0.5f;
         Player.transform.localScale *= 0.5f;
         Debug.Log("Decreased local scale to " + Player.transform.localScale);
         // Must also increase boundary for Floating Origin
@@ -67,17 +70,6 @@ public class UIArrowButtons : MonoBehaviour
         LeftRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 0.5f;
     }
 
-    public void ForceRayToggle(bool toggle)
-    {
-        if (toggle == true)
-        {
-            forceRayEnabled = true;
-        }
-        else if (toggle == false)
-        {
-            forceRayEnabled = false;
-        }
-    }
 
     public void IncreaseForceRay()
     {

@@ -68,10 +68,11 @@ public class InitialiseVelocity : MonoBehaviour
             }
 
         }
-        foreach (GameObject celestial in celestialList)
+        
+        /*foreach (GameObject celestial in celestialList)
         {
             celestial.transform.SetParent(systemObj.transform, true);
-        }
+        }*/
     }
 }
 
