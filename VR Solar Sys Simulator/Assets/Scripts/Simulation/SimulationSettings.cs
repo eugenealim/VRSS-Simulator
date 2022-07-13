@@ -36,6 +36,8 @@ public class SimulationSettings : MonoBehaviour
 
     public GameObject[] celestials; // [Sun, Merc, Ven, Earth, Moon, Mars, Jup, Sat, Uran, Nep, Plut] are the main celestials
 
+    private InitialiseVelocity initVel;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -49,6 +51,8 @@ public class SimulationSettings : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene(); // As this script is used for multiple scenes during development, this is used later to reload the current active scene
         gravitationalConstant = 4f * Mathf.Pow(Mathf.PI / (365.26f), 2f) * Mathf.Pow(lengthUnit, 3f) * Mathf.Pow(massUnit * celestials[0].GetComponent<Rigidbody>().mass, -1f) * Mathf.Pow(timeUnit, -2f); // Calculates the G constant based off K3L using the custom Unity scale/units
+
+        initVel = gameObject.GetComponent<InitialiseVelocity>();
     }
 
     private void OnValidate()
@@ -89,6 +93,10 @@ public class SimulationSettings : MonoBehaviour
     /// </summary>
     public void restartSimulation()
     {
+        /*for (int i = 0; i < celestials.Length; i++)
+        {
+            celestials[i].transform.parent = initVel.celestialParents[i].transform;
+        }*/
         SceneManager.LoadScene(currentScene.name);
     }
 
