@@ -61,9 +61,10 @@ Once loaded into the simulator, you should find yourself in front of the main me
 <p href="https://scontent-lcy1-1.xx.fbcdn.net/v/t39.2365-6/64700495_622041714964602_2286289187051143168_n.png?_nc_cat=106&ccb=1-7&_nc_sid=ad8a9d&_nc_ohc=qEwcQTc70IUAX-3c76g&_nc_ht=scontent-lcy1-1.xx&oh=00_AT_Wrw5V7Fqq3cKytDUH6PoIzEwb7PoNFkOyrBuGK3RlPQ&oe=62D6C8A5" align="center">
     <img src="https://scontent-lcy1-1.xx.fbcdn.net/v/t39.2365-6/64700495_622041714964602_2286289187051143168_n.png?_nc_cat=106&ccb=1-7&_nc_sid=ad8a9d&_nc_ohc=qEwcQTc70IUAX-3c76g&_nc_ht=scontent-lcy1-1.xx&oh=00_AT_Wrw5V7Fqq3cKytDUH6PoIzEwb7PoNFkOyrBuGK3RlPQ&oe=62D6C8A5" width="512">
 </p>
+
 #### UI Interaction
 Interacting with any UI feature requires you to aim with either controller and pressing `Button.One` once the ray interactor changes colour.
->For example, using the right controller this would be the `A` Button
+> For example, using the right controller this would be the `A` Button.
 
 Some UI panels will be unpinnable from world space, just like much of the standard Quest UI except it must be gripped using the `PrimaryHandTrigger` on the side of a controller when the ray interactor is targeting and turns green.
 
