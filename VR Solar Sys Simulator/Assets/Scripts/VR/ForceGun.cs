@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR;
 using UnityEngine.UI;
+using TMPro;
+
 public class ForceGun : MonoBehaviour
 {
     public Toggle forceGunToggle;
@@ -22,9 +24,14 @@ public class ForceGun : MonoBehaviour
     XRInteractorLineVisual lineVisual;
     public GameObject rightHand;
 
-    float rayRange = 500;
+    float rayRange = 5000;
 
+    public GameObject ForceIndicator;
+    TextMeshPro ForceText;
 
+    float EarthMass = 5.972f * Mathf.Pow(10, 24);
+    float LengthUnit = 0.01f * 1.496f * Mathf.Pow(10, 11);
+    float EarthDay = 60 * 60 * 24;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +40,7 @@ public class ForceGun : MonoBehaviour
         LineRenderer rightRay = gameObject.GetComponent<LineRenderer>();
         lineVisual = gameObject.GetComponent<XRInteractorLineVisual>();
 
+        ForceText = ForceIndicator.GetComponent<TextMeshPro>();
     }
 
     // Update is called once per frame
@@ -49,11 +57,13 @@ public class ForceGun : MonoBehaviour
             if(targetCelestial.collider.tag == "Celestial")
             {
                 isTargetingCelestial = true;
-                
-                Debug.Log("Celestial hit: " + targetCelestial.collider.name);
+
+                /*Debug.Log("Celestial hit: " + targetCelestial.collider.name);
                 Debug.Log(triggerPressValue);
                 Debug.Log(isTargetingCelestial);
-                Debug.Log(forceGunActive);
+                Debug.Log(forceGunActive);*/
+                
+                              
             }
         }
         else
@@ -61,13 +71,38 @@ public class ForceGun : MonoBehaviour
             isTargetingCelestial = false;
         }
 
-        if (forceGunActive && isTargetingCelestial && triggerPressValue > 0.03)
+        if (forceGunActive && isTargetingCelestial && triggerPressValue > 0.005)
         {
             Vector3 forceDirection = (targetCelestial.transform.position - rightHand.transform.position).normalized;
             float forceMagnitude = triggerPressValue * targetCelestial.rigidbody.mass;
             targetCelestial.rigidbody.AddForce(forceDirection * forceMagnitude);
 
             RightController.SendHapticImpulse(0, triggerPressValue, Time.deltaTime);
+
+            ForceIndicator.SetActive(true);
+            ForceIndicator.transform.position = gameObject.transform.position + 0.7f*gameObject.transform.forward + 0.05f*gameObject.transform.up;
+            Quaternion desiredRotation = ForceIndicator.transform.rotation;
+            //desiredRotation.y = rightHand.transform.rotation.y;
+            //ForceIndicator.transform.rotation = desiredRotation;
+
+            ForceIndicator.transform.rotation = rightHand.transform.rotation;
+            ForceIndicator.transform.localScale = new Vector3 (1, 1, 1);
+            ForceIndicator.GetComponent<TextMeshProUGUI>().rectTransform.localScale = new Vector3(1, 1, 1);
+
+            //Force is in units mass * length * time^-2
+            //to turn it into Newtons we convert the units
+            string forceToDisplay = ((forceMagnitude*EarthMass*LengthUnit/(Time.timeScale * EarthDay)/(Time.timeScale*EarthDay))).ToString("0.000E00");
+            ForceIndicator.GetComponent<TextMeshProUGUI>().text = forceToDisplay;
+
+            /*Vector3 ForceTextPosition = new Vector3(rightHand.transform.position.x + 0.2f*rightHand.transform.forward.normalized.x, rightHand.transform.position.y, rightHand.transform.position.z);
+            Quaternion ForceTextQuaternion = new Quaternion(rightHand.transform.rotation.x, rightHand.transform.rotation.y, rightHand.transform.rotation.z, 0);
+            Transform ForceNumber = Instantiate(ForceIndicator, ForceTextPosition, Quaternion.identity);
+            ForceNumber.LookAt(rightHand.transform);
+            ForceNumber.GetComponentInChildren<TextMeshProUGUI>().text = forceMagnitude.ToString();*/
+        }
+        else
+        {
+            ForceIndicator.SetActive(false);
         }
     }
 
