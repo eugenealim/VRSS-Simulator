@@ -34,6 +34,10 @@ public class ForceGun : MonoBehaviour
     float EarthMass = 5.972f * Mathf.Pow(10, 24);
     float LengthUnit = 0.01f * 1.496f * Mathf.Pow(10, 11);
     float EarthDay = 60 * 60 * 24;
+
+    public GameObject forceRayButtons;
+    private UIArrowButtons UIArrowButtons;
+    float forceMultiplier;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +47,8 @@ public class ForceGun : MonoBehaviour
         lineVisual = gameObject.GetComponent<XRInteractorLineVisual>();
 
         ForceText = ForceIndicator.GetComponent<TextMeshPro>();
+
+        UIArrowButtons = forceRayButtons.GetComponent<UIArrowButtons>();
     }
 
     // Update is called once per frame
@@ -83,34 +89,23 @@ public class ForceGun : MonoBehaviour
 
         if (forceGunActive && isTargetingCelestial && triggerPressValue > 0.005)
         {
+            float forceMultiplier = UIArrowButtons.forceValue;
+
             Vector3 forceDirection = (targetCelestial.transform.position - rightHand.transform.position).normalized;
-            float forceMagnitude = triggerPressValue * targetCelestial.rigidbody.mass;
+            float forceMagnitude = triggerPressValue * forceMultiplier * targetCelestial.rigidbody.mass;
             targetCelestial.rigidbody.AddForce(forceDirection * forceMagnitude);
 
             RightController.SendHapticImpulse(0, triggerPressValue, Time.deltaTime);
 
             ForceIndicator.SetActive(true);
-            ForceIndicator.transform.position = gameObject.transform.position + 0.7f*gameObject.transform.forward + 0.05f*gameObject.transform.up;
-            //Quaternion desiredRotation = ForceIndicator.transform.rotation;
-            //desiredRotation.y = rightHand.transform.rotation.y;
-            //ForceIndicator.transform.rotation = desiredRotation;
+            ForceIndicator.transform.position = gameObject.transform.position + 0.5f*gameObject.transform.forward + 0.05f*gameObject.transform.up;
 
             ForceIndicator.transform.rotation = rightHand.transform.rotation;
-            //ForceIndicator.transform.localScale = new Vector3 (1, 1, 1);
-            //ForceIndicator.GetComponent<TextMeshProUGUI>().rectTransform.localScale = new Vector3(1, 1, 1);
 
             //Force is in units mass * length * time^-2
-            //to turn it into Newtons we convert the units
+            //to turn it into Newtons we convert the unit
             string forceToDisplay = ((forceMagnitude*EarthMass*LengthUnit/(Time.timeScale * EarthDay)/(Time.timeScale*EarthDay))).ToString("0.000E00");
-            ForceIndicator.GetComponentInChildren<TextMeshProUGUI>().text = forceToDisplay+"N";
-
-            
-            /*Vector3 ForceTextPosition = new Vector3(rightHand.transform.position.x + 0.2f*rightHand.transform.forward.normalized.x, rightHand.transform.position.y, rightHand.transform.position.z);
-            Quaternion ForceTextQuaternion = new Quaternion(rightHand.transform.rotation.x, rightHand.transform.rotation.y, rightHand.transform.rotation.z, 0);
-            Transform ForceNumber = Instantiate(ForceIndicator, ForceTextPosition, Quaternion.identity);
-            ForceNumber.LookAt(rightHand.transform);
-            ForceNumber.GetComponentInChildren<TextMeshProUGUI>().text = forceMagnitude.ToString();*/
-            
+            ForceIndicator.GetComponentInChildren<TextMeshProUGUI>().text = "Force: \n" + forceToDisplay + "N";
         }
         else
         {

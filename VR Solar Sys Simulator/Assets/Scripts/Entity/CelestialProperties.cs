@@ -67,8 +67,10 @@ public class CelestialProperties : MonoBehaviour
     public Vector3 initDirection;
     public Vector3 posVectorResult;
 
+    public SimulationSettings simSettings;
     private void Start()
     {
+        simSettings = systemObj.GetComponent<SimulationSettings>();
         PropertyUpdate();
     }
 
@@ -110,14 +112,14 @@ public class CelestialProperties : MonoBehaviour
         posVectorResult = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * new Vector3(periapsisGlobal, 0, 0); // transforms/rotates periapsis position vector to not be aligned in the XZ plane with other celestials
         initDirection = Quaternion.Euler(0, 0, inclination) * Quaternion.Euler(0, rightAscension, 0) * Quaternion.AngleAxis(argumentOfPeriapsis, angularMomentum) * Vector3.forward; // applies same transform/rotation as applied to periapsis rotation vector where velocity was originally in 'forward' direction (used in SimulationSettings.cs)
 
-        //if (hostObj.CompareTag("Celestial"))
-        //{
-        //    orbitalPeriod = Mathf.Sqrt(4 * Mathf.Pow(Mathf.PI, 2) * Mathf.Pow((semiMajor), 3f) / (simSettings.gravitationalConstant * (mass + hostObj.GetComponent<Rigidbody>().mass))); // Using K3L
-        //}
-        //else
-        //{
-        //    orbitalPeriod = 0;
-        //}
+        if (hostObj.CompareTag("Celestial"))
+        {
+            orbitalPeriod = Mathf.Sqrt(4 * Mathf.Pow(Mathf.PI, 2) * Mathf.Pow((semiMajor), 3f) / (simSettings.gravitationalConstant * (mass + hostObj.GetComponent<Rigidbody>().mass))); // Using K3L
+        }
+        else
+        {
+            orbitalPeriod = 0;
+        }
 
         Vector3 radDist = hostObj.transform.position - gameObject.transform.position;
 
