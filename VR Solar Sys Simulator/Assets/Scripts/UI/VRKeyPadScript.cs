@@ -22,6 +22,9 @@ public class VRKeyPadScript : MonoBehaviour
 
     string[] characters;
 
+    bool updateValuesLive;
+    public Toggle liveValueToggle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +81,10 @@ public class VRKeyPadScript : MonoBehaviour
         activeInputField.Select();
         activeInputField.ActivateInputField();
         activeInputField.text = (activeInputField.text + btn.name);
-        activeInputField.onSubmit.Invoke(activeInputField.text);
+        if(updateValuesLive)
+        {
+            activeInputField.onSubmit.Invoke(activeInputField.text);
+        }
     }
 
 
@@ -89,7 +95,6 @@ public class VRKeyPadScript : MonoBehaviour
         activeInputField.DeactivateInputField();
         activeInputField = null;
         keypad.SetActive(false);
-
     }
 
     public void PressDelete()
@@ -102,6 +107,14 @@ public class VRKeyPadScript : MonoBehaviour
         {
             activeInputField.text = "0";
         }
-        activeInputField.onSubmit.Invoke(activeInputField.text);
+        if (updateValuesLive)
+        {
+            activeInputField.onSubmit.Invoke(activeInputField.text);
+        }
+    }
+
+    public void UpdateLiveValues()
+    {
+        updateValuesLive = liveValueToggle.isOn;
     }
 }
