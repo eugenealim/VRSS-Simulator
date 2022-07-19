@@ -102,5 +102,6 @@ public class VRKeyPadScript : MonoBehaviour
         {
             activeInputField.text = "0";
         }
+        activeInputField.onSubmit.Invoke(activeInputField.text);
     }
 }
