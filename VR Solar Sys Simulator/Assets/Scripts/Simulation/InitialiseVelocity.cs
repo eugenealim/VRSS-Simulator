@@ -38,9 +38,6 @@ public class InitialiseVelocity : MonoBehaviour
         {
             int noOfChildren = parentObj.transform.childCount;
 
-            GameObject parentParent = parentObj.transform.parent.gameObject; // Attempt to find parent of parent object (allowing for 3-tier system)
-            bool celTagParent = parentParent.CompareTag("Celestial"); // Check to see if this ancestor is a Celestial object to apply physics to
-
             for (int i = 0; i < noOfChildren; i++)
             {
                 GameObject child = parentObj.transform.GetChild(i).gameObject; // Chooses child GameObject of index i
