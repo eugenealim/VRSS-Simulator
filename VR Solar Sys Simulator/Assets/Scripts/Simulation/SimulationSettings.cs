@@ -93,10 +93,10 @@ public class SimulationSettings : MonoBehaviour
     /// </summary>
     public void restartSimulation()
     {
-        /*for (int i = 0; i < celestials.Length; i++)
+        for (int i = 0; i < celestials.Length; i++)
         {
             celestials[i].transform.parent = initVel.celestialParents[i].transform;
-        }*/
+        }
         SceneManager.LoadScene(currentScene.name);
     }
 

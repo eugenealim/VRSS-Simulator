@@ -17,6 +17,7 @@ public class UIArrowButtons : MonoBehaviour
     public float forceValue = 1f;
     public Text forceText;
 
+    public GameObject[] rayInteractors;
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -51,6 +52,11 @@ public class UIArrowButtons : MonoBehaviour
         LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 2;
         LeftRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 2f;
         LeftRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 2f;
+
+        foreach (GameObject hand in rayInteractors)
+        {
+            hand.GetComponent<LineRenderer>().widthMultiplier *= 2f;
+        }
     }
 
     public void DecreaseSize()
@@ -68,6 +74,11 @@ public class UIArrowButtons : MonoBehaviour
         LeftRay.GetComponent<XRInteractorLineVisual>().lineLength *= 0.5f;
         LeftRay.GetComponent<XRInteractorLineVisual>().lineWidth *= 0.5f;
         LeftRay.GetComponent<XRRayInteractor>().maxRaycastDistance *= 0.5f;
+
+        foreach (GameObject hand in rayInteractors)
+        {
+            hand.GetComponent<LineRenderer>().widthMultiplier *= 0.5f;
+        }
     }
 
 

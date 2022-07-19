@@ -9,7 +9,7 @@ public class InitialiseVelocity : MonoBehaviour
     public bool findSystemObj;
     public GameObject systemObj;
 
-    public GameObject[] celestialParents;
+    public List<GameObject> celestialParents;
 
     // Start is called before the first frame update
     void Start()
@@ -73,9 +73,13 @@ public class InitialiseVelocity : MonoBehaviour
 
         for (int i = 0; i < celestialList.Length; i++)
         {
-            celestialList[i].transform.parent = celestialParents[i].transform;
+            celestialParents.Add(celestialList[i].transform.parent.gameObject);
         }
 
+        Invoke("UnparentCelestials", 5f);
+    }
+    public void UnparentCelestials()
+    {
         foreach (GameObject celestial in celestialList)
         {
             celestial.transform.SetParent(systemObj.transform, true);

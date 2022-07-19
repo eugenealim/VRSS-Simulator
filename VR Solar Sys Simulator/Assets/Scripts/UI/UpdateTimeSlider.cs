@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class UpdateTimeSlider : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UpdateTimeSlider : MonoBehaviour
     private SimulationSettings simulation;
 
     public Dropdown timeUnitMenu;
+
+    public GameObject[] handInteractors;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,13 @@ public class UpdateTimeSlider : MonoBehaviour
 
             //the timescale of the simulation is adjusted to be multiplies by the slider value set by the user
             simulation.initialTimeScale = slider.GetComponent<Slider>().value;
+
+            //changing the speed at which you move the UI back and forth depending on timeScale to work in fast timescales
+            foreach (GameObject hand in handInteractors)
+            {
+                hand.GetComponent<XRRayInteractor>().translateSpeed = 1/Time.timeScale;
+            }
+
             ///we also adjust the time between calculations so that higher timescales can be simulated without lag
             ///this has a slight effect on the accuracy of the simulation but no big deviations can be seen with the fastest timescale the UI offers
             Time.fixedDeltaTime = simulation.initialFixedTimeStep * slider.GetComponent<Slider>().value;
