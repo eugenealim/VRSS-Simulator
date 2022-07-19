@@ -60,28 +60,28 @@ public class ForceGun : MonoBehaviour
         RightController = InputDevices.GetDeviceAtXRNode(inputSourceRight);
         RightController.TryGetFeatureValue(CommonUsages.trigger, out triggerPressValue);
 
+        //checks if an invisible ray of range rayRange is hitting anything and takes the collision info as targetCelestial
         if(Physics.Raycast(forwardRay, out RaycastHit targetCelestial, rayRange) && forceGunActive)
         {
+            //checks if the object the ray hit is labeled as a celestial
             if(targetCelestial.collider.transform.parent.tag == "Celestial")
             {
                 isTargetingCelestial = true;
 
-                /*Debug.Log("Celestial hit: " + targetCelestial.collider.name);
-                Debug.Log(triggerPressValue);
-                Debug.Log(isTargetingCelestial);
-                Debug.Log(forceGunActive);*/
-
+                //disables the default right hand ray and replaces it with the auto-aim ray
                 LatchLine = rightHand.GetComponent<LineRenderer>();
-
                 gameObject.GetComponent<XRInteractorLineVisual>().enabled = false;
                 LatchLine.enabled = true;
 
+                //constructs a line between 2 points, the right hand and centre of the celestial targeted
                 LatchLine.SetPosition(0, rightHand.transform.position);
                 LatchLine.SetPosition(1, targetCelestial.transform.position);
             }
         }
         else
         {
+            //if the force gun is not active or a celestial is not being targeted:
+            //the auto-aim ray is disabled and we go back to the default right hand ray
             isTargetingCelestial = false;
             gameObject.GetComponent<XRInteractorLineVisual>().enabled = true;
             LatchLine.enabled = false;
@@ -89,23 +89,30 @@ public class ForceGun : MonoBehaviour
 
         if (forceGunActive && isTargetingCelestial && triggerPressValue > 0.005)
         {
+            //takes the force multiplier based on the setting from the ForceUp and ForceDown buttons
             float forceMultiplier = UIArrowButtons.forceValue;
 
+            //
             Vector3 forceDirection = (targetCelestial.transform.position - rightHand.transform.position).normalized;
             float forceMagnitude = triggerPressValue * forceMultiplier * targetCelestial.rigidbody.mass;
             targetCelestial.rigidbody.AddForce(forceDirection * forceMagnitude);
 
+            //sends a vibration which depends on how hard the trigger is pressed
+            //the vibration pulse is as long as last frame so it can vary every frame depending on trigger press value
             RightController.SendHapticImpulse(0, triggerPressValue, Time.deltaTime);
 
+            //enables and moves/rotates the force indicator number
             ForceIndicator.SetActive(true);
             ForceIndicator.transform.position = gameObject.transform.position + 0.5f*gameObject.transform.forward + 0.05f*gameObject.transform.up;
-
             ForceIndicator.transform.rotation = rightHand.transform.rotation;
 
             //Force is in units mass * length * time^-2
-            //to turn it into Newtons we convert the unit
+            //to turn it into Newtons we convert the units from chosen game units to SI units by simple multiplication
             string forceToDisplay = ((forceMagnitude*EarthMass*LengthUnit/(Time.timeScale * EarthDay)/(Time.timeScale*EarthDay))).ToString("0.000E00");
-            ForceIndicator.GetComponentInChildren<TextMeshProUGUI>().text = "Force: \n" + forceToDisplay + "N";
+
+            //splits the string into the decimal and its exponent of 10 to easily display in scientific notation
+            string[] values = forceToDisplay.Split("E");
+            ForceIndicator.GetComponentInChildren<TextMeshProUGUI>().text = "Force: \n" + values[0] + "x10^" + values[1] + " N";
         }
         else
         {
@@ -121,21 +128,4 @@ public class ForceGun : MonoBehaviour
     {
         forceGunActive = forceGunToggle.isOn;
     }
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.transform.tag == "Celestial")
-        {
-            isTargetingCelestial = true;
-            targetCelestial = collision.gameObject;
-            Debug.Log("Colliding with celestial now");
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        isTargetingCelestial = false;
-        targetCelestial = null;
-    }
-    */
 }

@@ -74,6 +74,7 @@ public class VRCamSwitch : MonoBehaviour
 
         focusCamera.transform.position = objectPosition + offset;
 
+        //if the input fields are not active then they will update to the celestial chosen by the dropdown menu
         if (keypad.activeInputField != keypad.mass)
         {
             VRCelestialEditor.massInput.text = simSettings.celestials[celNumber].GetComponent<Rigidbody>().mass.ToString();
