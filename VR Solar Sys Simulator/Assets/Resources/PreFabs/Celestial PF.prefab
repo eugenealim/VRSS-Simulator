@@ -90,6 +90,7 @@ MonoBehaviour:
   dotProductOfAngMomAndVel: 0
   initDirection: {x: 0, y: 0, z: 1}
   posVectorResult: {x: 0, y: 0, z: 0}
+  simSettings: {fileID: 0}
 --- !u!114 &824711683580816549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +597,7 @@ GameObject:
   - component: {fileID: 1381639523698974312}
   - component: {fileID: 7721381221344873273}
   m_Layer: 8
-  m_Name: AutoLatchTrigger
+  m_Name: LatchDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
