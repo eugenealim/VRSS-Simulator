@@ -118,7 +118,7 @@ public class CelestialProperties : MonoBehaviour
         }
         else
         {
-            orbitalPeriod = 0;
+            orbitalPeriod = Mathf.Infinity;
         }
 
         Vector3 radDist = hostObj.transform.position - gameObject.transform.position;
@@ -138,9 +138,9 @@ public class CelestialProperties : MonoBehaviour
 
     }
 
-    // Assign the above parameters to the gameObject
     private void OnValidate()
     {
+        simSettings = systemObj.GetComponent<SimulationSettings>();
         PropertyUpdate();
     }
 
