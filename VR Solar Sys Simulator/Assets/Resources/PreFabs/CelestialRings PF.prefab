@@ -90,6 +90,7 @@ MonoBehaviour:
   dotProductOfAngMomAndVel: 0
   initDirection: {x: 0, y: 0, z: 1}
   posVectorResult: {x: 0, y: 0, z: 0}
+  simSettings: {fileID: 0}
 --- !u!114 &824711683580816549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,8 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 360
-  innerRadius: 0.7
-  thickness: 0.5
+  innerRadius: 0.5
+  thickness: 1
   ringMat: {fileID: 2100000, guid: fcf7a782a845b6745a042c0470f30189, type: 2}
 --- !u!1 &722663830881194117
 GameObject:
