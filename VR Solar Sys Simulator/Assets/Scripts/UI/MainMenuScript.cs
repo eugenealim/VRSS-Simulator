@@ -15,27 +15,27 @@ public class MainMenuScript : MonoBehaviour
 
     public void EnterEmptyScene()
     {
-        return;
+        SceneManager.LoadScene("Empty");
     }
 
     public void EnterSolarSys()
     {
-        return;
+        SceneManager.LoadScene("Dev Scene");
     }
 
     public void EnterEarth()
     {
-        return;
+        SceneManager.LoadScene("Earth");
     }
 
     public void EnterJupiter()
     {
-        return;
+        SceneManager.LoadScene("Jupiter");
     }
 
     public void EnterSaturn()
     {
-        return;
+        SceneManager.LoadScene("Saturn");
     }
 
     public void EnterMainMenu()
